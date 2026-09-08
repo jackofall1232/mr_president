@@ -1,0 +1,316 @@
+{
+  "id": "allied-security-request",
+  "title": "European Allies Request a Larger American Commitment",
+  "flash_label": "ALLIANCE CONSULTATION",
+  "category": "diplomacy",
+  "severity": 3,
+  "summary": "Allied capitals have formally requested additional American forces and enabling capabilities for a standing eastern deployment.",
+  "briefing_text": "Council President Marchetti delivered a formal request for an additional American brigade, air defense, and the enabling capabilities that only we field, on a standing rather than rotational basis. The request is backed by eleven of the sixteen capitals and was accompanied by a private acknowledgement that European contributions have fallen short of commitments made three years ago. Refusal is survivable; a public refusal is not the same thing. The Council expects an answer before its summit in five weeks.",
+  "location": { "country": "european_allies" },
+  "start_conditions": [ { "min_turn": 2 } ],
+  "weight": 9,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "hidden.escalation_pressure", "op": ">=", "value": 30 } ], "multiply": 1.5 },
+    { "conditions": [ { "path": "hidden.allied_reliability", "op": "<=", "value": 50 } ], "multiply": 1.3 }
+  ],
+  "cooldown": 12,
+  "max_occurrences": 2,
+  "exclusive_with": [],
+  "expiry": null,
+  "tags": ["alliance", "burden_sharing", "european_allies", "deployment"],
+  "cabinet_assessment": {
+    "state": "The request is real and the shortfall in their own contributions is also real, Mr. President. Both things can be said, and how we say the second one determines what the first one costs us.",
+    "defense": "A standing brigade plus enablers is roughly forty billion across the profile and it comes out of the Pacific rotation, sir. I can do either mission well. I cannot do both well at this topline.",
+    "treasury": "Forty billion is financeable and it is not free. If you commit, I would rather it appear in the request than be absorbed quietly across three accounts.",
+    "nsa": "Whatever we decide becomes the alliance's planning assumption for a decade. I would be careful about how much we let a five-week summit deadline shape a ten-year commitment.",
+    "chief_of_staff": "If we send people, you need to be able to say when they come home. That is the question at every stop for the next two years, sir.",
+    "intelligence": "Allied services expect a yes and have planned on that basis. A refusal will produce a period of genuine strategic uncertainty in three capitals I would rather keep steady."
+  },
+  "choices": [
+    {
+      "id": "full-commitment",
+      "label": "Commit Additional Forces",
+      "description": "Approve the request in full: a standing brigade, air defense, and enabling capabilities.",
+      "advisor_positions": {
+        "state": "This settles the alliance question for a decade, Mr. President, and it removes our leverage on burden-sharing for just as long.",
+        "defense": "I can execute it, sir. It comes out of the Pacific rotation and I want that written into the decision memorandum, not discovered in testimony.",
+        "chief_of_staff": "Forty billion and an open-ended deployment in your first year. Be certain, because this one does not unwind."
+      },
+      "effects": {
+        "public.allied_confidence": 8,
+        "public.global_influence": 4,
+        "public.deficit": 40,
+        "public.national_debt": 40,
+        "public.congress_support": -4,
+        "public.approval": -2,
+        "countries.european_allies.trust": 8,
+        "countries.european_allies.cooperation": 6
+      },
+      "hidden_effects": {
+        "hidden.allied_reliability": 6,
+        "hidden.war_fatigue": 4,
+        "hidden.political_capital": -6,
+        "hidden.credibility": 4
+      },
+      "flags": { "standing_deployment": true },
+      "counters": { "force_deployments": 1 },
+      "delayed": [
+        {
+          "label": "Alliance cohesion deepens",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.85,
+          "conditions": [],
+          "effects": { "countries.european_allies.relationship": 5, "public.global_influence": 2 },
+          "hidden_effects": { "hidden.allied_reliability": 3, "hidden.credibility": 2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "standing deployment consolidated allied planning",
+            "target": "european_allies",
+            "result": "alliance cohesion strengthened",
+            "tags": ["alliance", "deployment"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Allied Planning Consolidates Around the American Commitment" }
+        },
+        {
+          "label": "Domestic fatigue with the deployment",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "hidden.war_fatigue", "op": ">=", "value": 18 } ],
+          "effects": { "public.approval": -3, "public.domestic_stability": -2 },
+          "hidden_effects": { "hidden.war_fatigue": 3, "hidden.political_capital": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "When Do They Come Home? The Question Nobody Will Answer" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "approved the allied request for a standing deployment",
+        "target": "european_allies",
+        "result": "alliance reassured; cost and leverage both surrendered",
+        "tags": ["alliance", "deployment", "burden_sharing"]
+      },
+      "outcome_text": "The commitment was announced jointly at the summit and received a standing ovation from people who had prepared for a refusal. The Pacific rotation was quietly rewritten the following week.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Approves Standing Deployment for European Allies" },
+        { "outlet_id": "world-desk", "title": "Allied Capitals Register Relief as Washington Commits" }
+      ]
+    },
+    {
+      "id": "conditional-support",
+      "label": "Support Tied to Burden-Sharing",
+      "description": "Approve a smaller package contingent on verified increases in allied defense spending.",
+      "advisor_positions": {
+        "state": "It is the honest position, Mr. President, and honest positions in alliance politics are received as insults for about a year before they are received as leadership.",
+        "treasury": "Twelve billion with a verification mechanism I can actually audit. Of the options in this room, it is the one I can defend line by line."
+      },
+      "effects": {
+        "public.allied_confidence": 2,
+        "public.deficit": 12,
+        "public.national_debt": 12,
+        "public.congress_support": 3,
+        "countries.european_allies.cooperation": 2,
+        "countries.european_allies.trust": -3
+      },
+      "hidden_effects": {
+        "hidden.allied_reliability": 2,
+        "hidden.credibility": 2,
+        "hidden.media_goodwill": -1,
+        "hidden.political_capital": -2
+      },
+      "flags": { "burden_sharing_demand": true },
+      "counters": { "alliance_conditions": 1 },
+      "delayed": [
+        {
+          "label": "Allies meet the spending benchmarks",
+          "delay_turns": 4,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.55,
+          "conditions": [ { "flag": "burden_sharing_demand" } ],
+          "effects": { "public.allied_confidence": 3, "countries.european_allies.trade_dependency": 4, "countries.european_allies.trust": 5 },
+          "hidden_effects": { "hidden.allied_reliability": 4, "hidden.credibility": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "allies met the verified spending benchmarks",
+            "target": "european_allies",
+            "result": "burden-sharing improved without a rupture",
+            "tags": ["alliance", "burden_sharing"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Allied Defense Budgets Clear the Agreed Benchmarks" }
+        },
+        {
+          "label": "Resentment at the conditions",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.4,
+          "conditions": [],
+          "effects": { "countries.european_allies.trust": -4, "public.allied_confidence": -2 },
+          "hidden_effects": { "hidden.allied_reliability": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "world-desk", "title": "Capitals Bristle at American Conditions" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "tied additional forces to verified burden-sharing",
+        "target": "european_allies",
+        "result": "partial commitment; conditions resented but accepted",
+        "tags": ["alliance", "burden_sharing", "conditions"]
+      },
+      "outcome_text": "The package was approved with a verification annex that three capitals asked to have removed. It stayed in. The summit communiqué described the outcome as constructive, twice.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Ties New Forces to Allied Spending Benchmarks" },
+        { "outlet_id": "capital-observer", "title": "Conditional Support: Leadership or Leverage?" }
+      ]
+    },
+    {
+      "id": "logistics-only",
+      "label": "Offer Logistics and Intelligence Only",
+      "description": "Decline the force request but expand airlift, sustainment, and intelligence support.",
+      "advisor_positions": {
+        "defense": "It is cheap, it is real capability, and it is not what they asked for, sir. They will describe it as a refusal because that is what it is.",
+        "intelligence": "Expanded sharing buys us insight as well as goodwill, Mr. President. It also puts more of our collection in rooms we do not control."
+      },
+      "effects": {
+        "public.allied_confidence": -4,
+        "public.approval": 1,
+        "public.deficit": 6,
+        "public.national_debt": 6,
+        "public.congress_support": 2,
+        "countries.european_allies.trust": -5
+      },
+      "hidden_effects": {
+        "hidden.allied_reliability": -5,
+        "hidden.credibility": -3,
+        "hidden.intelligence_confidence": 2,
+        "hidden.war_fatigue": -1
+      },
+      "flags": { "enablers_only": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Allied planning drifts from American assumptions",
+          "delay_turns": 5,
+          "mode": "due",
+          "chance": 0.7,
+          "conditions": [],
+          "effects": { "countries.european_allies.cooperation": -4, "public.global_influence": -2 },
+          "hidden_effects": { "hidden.allied_reliability": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "allied planning diverged after the limited offer",
+            "target": "european_allies",
+            "result": "independent European capability track accelerated",
+            "tags": ["alliance", "divergence"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "European Capitals Accelerate an Independent Capability Track" }
+        },
+        {
+          "label": "Reliability doubts spread to other partners",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.45,
+          "conditions": [ { "path": "hidden.allied_reliability", "op": "<=", "value": 50 } ],
+          "effects": { "public.global_influence": -3, "countries.pacific_allies.trust": -4 },
+          "hidden_effects": { "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Allies Wary as Washington Offers Less Than Asked" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "offered enabling support instead of additional forces",
+        "target": "european_allies",
+        "result": "commitment limited; allied confidence reduced",
+        "tags": ["alliance", "restraint", "enablers"]
+      },
+      "outcome_text": "The offer expanded airlift and intelligence sharing at a fraction of the cost of the request. Council President Marchetti thanked the President publicly and, according to two officials, said something rather different in the room.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Washington Offers Logistics and Intelligence, Not Troops" },
+        { "outlet_id": "world-desk", "title": "Partners Read a Narrower American Commitment" }
+      ]
+    },
+    {
+      "id": "alliance-review",
+      "label": "Open a Formal Alliance Review",
+      "description": "Defer the request and announce a comprehensive review of American commitments and their terms.",
+      "advisor_positions": {
+        "chief_of_staff": "It polls well at home and it buys us six months, Mr. President. That is genuinely all it does.",
+        "state": "A review is read abroad as a countdown, sir. Every capital will spend those six months hedging, and some of that hedging will not be reversible.",
+        "nsa": "Moscow will read this precisely as an opportunity, and they will be right to."
+      },
+      "effects": {
+        "public.allied_confidence": -6,
+        "public.approval": 2,
+        "public.deficit": -10,
+        "public.congress_support": 4,
+        "countries.european_allies.relationship": -6,
+        "countries.european_allies.cooperation": -5
+      },
+      "hidden_effects": {
+        "hidden.political_capital": 3,
+        "hidden.allied_reliability": -8,
+        "hidden.credibility": -4,
+        "hidden.media_goodwill": -3
+      },
+      "flags": { "alliance_review": true },
+      "counters": { "alliance_reviews": 1 },
+      "delayed": [
+        {
+          "label": "Partners hedge during the review",
+          "delay_turns": 4,
+          "window_turns": 8,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "alliance_review" } ],
+          "effects": { "countries.european_allies.trade_dependency": -5, "public.global_influence": -4, "countries.russia.relationship": 3 },
+          "hidden_effects": { "hidden.allied_reliability": -4, "hidden.rival_risk_tolerance": 4 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "allies hedged during the American alliance review",
+            "target": "european_allies",
+            "result": "influence lost; rivals encouraged",
+            "tags": ["alliance", "review", "hedging"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Capitals Hedge as Washington Reviews Its Commitments" }
+        },
+        {
+          "label": "Review returns budget savings",
+          "delay_turns": 6,
+          "mode": "due",
+          "chance": 0.5,
+          "conditions": [],
+          "effects": { "public.deficit": -8, "public.national_debt": -8 },
+          "hidden_effects": { "hidden.political_capital": 3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Commitment Review Identifies Multiyear Savings" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "opened a formal review of alliance commitments",
+        "target": "european_allies",
+        "result": "decision deferred; allied confidence badly damaged",
+        "tags": ["alliance", "review", "deferral"]
+      },
+      "outcome_text": "The review was announced as a routine assessment and understood by everyone as something else. Three capitals opened bilateral conversations with each other the same week.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Orders Review of American Alliance Commitments" },
+        { "outlet_id": "world-desk", "title": "Allied Capitals Read a Review as a Countdown" }
+      ]
+    }
+  ],
+  "followup_events": []
+}

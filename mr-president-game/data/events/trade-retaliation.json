@@ -1,0 +1,310 @@
+{
+  "id": "trade-retaliation",
+  "title": "Retaliation Targets American Exporters",
+  "flash_label": "TRADE COUNTERMEASURES",
+  "category": "economy",
+  "severity": 3,
+  "summary": "Kavara and two of its trading partners have imposed matching restrictions aimed squarely at American agricultural and industrial exports.",
+  "briefing_text": "The Republic of Kavara published a countermeasure list at midnight local time, and two of its principal trading partners adopted substantially the same list within eighteen hours. The targets are precise: agricultural commodities and industrial components concentrated in nine states, chosen for political effect rather than economic weight. Treasury estimates direct exposure at eleven billion dollars annually, with the indirect effect on contract renegotiation likely larger. The measures are the announced response to American restrictions, and they were designed to be answered.",
+  "location": { "country": "rival_state_a" },
+  "start_conditions": [
+    { "any": [ { "flag": "sanctions_rival_a" }, { "flag": "export_controls" } ] }
+  ],
+  "weight": 7,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "hidden.trade_retaliation_risk", "op": ">=", "value": 30 } ], "multiply": 2.0 }
+  ],
+  "cooldown": 12,
+  "max_occurrences": 2,
+  "exclusive_with": [],
+  "expiry": null,
+  "tags": ["trade", "retaliation", "kavara", "economy"],
+  "cabinet_assessment": {
+    "state": "This was designed to be answered, Mr. President, and answering it in kind is what they expect. There is a version of firmness that does not require us to follow their script.",
+    "defense": "The industrial components on that list feed two of my supplier bases, sir. It is not a readiness emergency this quarter. It becomes one if it runs a year.",
+    "treasury": "Eleven billion in direct exposure, concentrated in nine states, and every one of those states knows the number already. Matching tariffs would raise prices here more reliably than they would raise costs there.",
+    "nsa": "They are testing whether our restrictions were a policy or a gesture. Whatever we do, the answer we give will be applied to the next decision as well.",
+    "chief_of_staff": "Nine states, sir, and their delegations were on the phone before the briefing finished. You will hear about this at every event for the next two months.",
+    "intelligence": "Reporting indicates the list was drawn up weeks before our measures and held in reserve. This is a prepared response, not an improvised one, and there is more of it."
+  },
+  "choices": [
+    {
+      "id": "escalate-tariffs",
+      "label": "Match With Tariffs",
+      "description": "Impose reciprocal tariffs of equivalent scope on their exports to the United States.",
+      "advisor_positions": {
+        "treasury": "Reciprocity is satisfying and it is paid at American checkout counters, Mr. President. I can implement it; I would like the inflation consequence in the announcement.",
+        "chief_of_staff": "The nine states want to see us fight. This is the option they will recognize as fighting."
+      },
+      "effects": {
+        "public.approval": 2,
+        "public.gdp_growth": -0.3,
+        "public.inflation": 0.4,
+        "public.congress_support": 2,
+        "countries.rival_state_a.relationship": -6,
+        "countries.china.relationship": -4
+      },
+      "hidden_effects": {
+        "hidden.credibility": 4,
+        "hidden.trade_retaliation_risk": 8,
+        "hidden.recession_pressure": 5
+      },
+      "flags": { "reciprocal_tariffs": true },
+      "counters": { "tariff_actions": 1 },
+      "delayed": [
+        {
+          "label": "Tariff pass-through reaches consumers",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 1.0,
+          "conditions": [],
+          "effects": { "public.inflation": 0.2, "public.gdp_growth": -0.2 },
+          "hidden_effects": { "hidden.recession_pressure": 4, "hidden.media_goodwill": -2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "economy",
+            "action": "tariff costs passed through to consumers",
+            "target": "domestic",
+            "result": "prices rose; the dispute continued",
+            "tags": ["tariffs", "inflation"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Import Prices Climb as Reciprocal Tariffs Take Effect" }
+        },
+        {
+          "label": "Trade dispute deepens the slowdown",
+          "delay_turns": 4,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "hidden.recession_pressure", "op": ">=", "value": 45 } ],
+          "effects": { "public.unemployment": 0.3, "public.approval": -3, "public.gdp_growth": -0.2 },
+          "hidden_effects": { "hidden.recession_pressure": 3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "The Trade War Nobody Budgeted For" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "imposed reciprocal tariffs after Kavaran countermeasures",
+        "target": "rival_state_a",
+        "result": "firmness demonstrated; domestic prices rose",
+        "tags": ["tariffs", "trade", "kavara"]
+      },
+      "outcome_text": "The reciprocal list published within a week and matched theirs almost item for item. Two industry associations that had demanded a response asked, privately, whether an exemption process existed.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "United States Imposes Reciprocal Tariffs in Trade Dispute" },
+        { "outlet_id": "world-desk", "title": "{event_short} Ripples Through Trading Partners" }
+      ]
+    },
+    {
+      "id": "arbitration",
+      "label": "Take It to Arbitration",
+      "description": "File formal dispute proceedings and press allied governments to join the complaint.",
+      "advisor_positions": {
+        "state": "Nine allied governments will co-file if we ask this week, Mr. President. That is a coalition, and coalitions outlast tariffs.",
+        "chief_of_staff": "It is the correct answer and it looks like nothing for eighteen months. I would like you to know both halves of that sentence."
+      },
+      "effects": {
+        "public.approval": -2,
+        "public.congress_support": -3,
+        "public.global_influence": 3,
+        "public.gdp_growth": -0.1,
+        "countries.european_allies.cooperation": 4
+      },
+      "hidden_effects": {
+        "hidden.credibility": 2,
+        "hidden.institutional_trust": 3,
+        "hidden.trade_retaliation_risk": -5,
+        "hidden.political_capital": -2
+      },
+      "flags": { "trade_arbitration": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Arbitration produces a partial rollback",
+          "delay_turns": 6,
+          "mode": "due",
+          "chance": 0.55,
+          "conditions": [],
+          "effects": { "countries.rival_state_a.trade_dependency": 4, "public.gdp_growth": 0.2 },
+          "hidden_effects": { "hidden.trade_retaliation_risk": -6, "hidden.credibility": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "economy",
+            "action": "arbitration produced a partial rollback of countermeasures",
+            "target": "rival_state_a",
+            "result": "restrictions eased through process rather than pressure",
+            "tags": ["trade", "arbitration", "multilateral"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Panel Finds Against Countermeasures in Trade Dispute" }
+        },
+        {
+          "label": "Patience runs out at home",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.4,
+          "conditions": [ { "path": "public.approval", "op": "<=", "value": 48 } ],
+          "effects": { "public.approval": -2, "public.congress_support": -3 },
+          "hidden_effects": { "hidden.media_goodwill": -3, "hidden.political_capital": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Eighteen Months and Counting: The Case for Doing Something" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "filed formal dispute proceedings over the countermeasures",
+        "target": "rival_state_a",
+        "result": "coalition built; relief measured in years",
+        "tags": ["trade", "arbitration", "multilateral"]
+      },
+      "outcome_text": "Nine governments co-filed within a fortnight, which was more than the State Department had promised. The proceedings will report in roughly eighteen months.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "United States Files Trade Complaint With Allied Co-Signatories" },
+        { "outlet_id": "american-ledger", "title": "Markets Read Restraint as a Signal of Institutional Confidence" }
+      ]
+    },
+    {
+      "id": "industry-relief",
+      "label": "Compensate Affected Industries",
+      "description": "Stand up a support programme for the exporters and growers caught by the countermeasures.",
+      "advisor_positions": {
+        "treasury": "Twenty-five billion, and every programme like this outlives the dispute that created it, Mr. President. Write the sunset into the statute or it will not have one.",
+        "chief_of_staff": "This is the option the nine states are actually asking for, sir. It buys us the year we need to resolve the rest."
+      },
+      "effects": {
+        "public.approval": 3,
+        "public.deficit": 25,
+        "public.national_debt": 25,
+        "public.unemployment": -0.1,
+        "public.congress_support": -2
+      },
+      "hidden_effects": {
+        "hidden.political_capital": -5,
+        "hidden.recession_pressure": -3,
+        "hidden.media_goodwill": -2,
+        "hidden.credibility": -2
+      },
+      "flags": { "trade_relief_programme": true },
+      "counters": { "relief_programmes": 1 },
+      "delayed": [
+        {
+          "label": "Relief programme outgrows its estimate",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.75,
+          "conditions": [],
+          "effects": { "public.deficit": 8, "public.national_debt": 8 },
+          "hidden_effects": { "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Trade Relief Programme Runs Past Its Own Estimate" }
+        },
+        {
+          "label": "Cumulative spending becomes the story",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "fiscal_stimulus" } ],
+          "effects": { "public.congress_support": -4, "public.approval": -2 },
+          "hidden_effects": { "hidden.political_capital": -4, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "congress",
+            "action": "defended cumulative emergency spending on the Hill",
+            "target": "congress",
+            "result": "programmes survived; fiscal standing eroded",
+            "tags": ["deficit", "congress", "trade"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "How Many Emergencies Fit in One Fiscal Year?" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "compensated exporters hit by the countermeasures",
+        "target": "domestic",
+        "result": "affected sectors stabilized at fiscal cost",
+        "tags": ["trade", "relief", "deficit"]
+      },
+      "outcome_text": "The programme opened for applications in six weeks and was oversubscribed in nine days. The dispute itself remained exactly where it was.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Opens Support Programme for Affected Exporters" },
+        { "outlet_id": "american-ledger", "title": "Growers Report Steadier Contracts as Federal Support Arrives" }
+      ]
+    },
+    {
+      "id": "negotiated-rollback",
+      "label": "Negotiate a Mutual Rollback",
+      "description": "Offer to suspend the American restrictions in exchange for withdrawal of the countermeasures.",
+      "advisor_positions": {
+        "state": "They will accept, Mr. President, because they want the restrictions gone more than they want the argument. The question is what we teach them about pressure in the process.",
+        "nsa": "A rollback now tells Chairman Vekhtar that countermeasures work, sir. He will draw that conclusion whether or not it is the one we intend.",
+        "treasury": "It is the fastest path to relief for the nine states and the slowest path to enforcement credibility. Both are true."
+      },
+      "effects": {
+        "public.approval": -4,
+        "public.gdp_growth": 0.2,
+        "public.allied_confidence": -2,
+        "public.congress_support": -3,
+        "countries.rival_state_a.relationship": 8,
+        "countries.rival_state_a.trade_dependency": 5
+      },
+      "hidden_effects": {
+        "hidden.credibility": -7,
+        "hidden.trade_retaliation_risk": -12,
+        "hidden.political_capital": -3
+      },
+      "flags": { "sanctions_rollback": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Rollback read as a concession",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.8,
+          "conditions": [],
+          "effects": { "public.approval": -1, "public.allied_confidence": -2 },
+          "hidden_effects": { "hidden.credibility": -2, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Who Won the Trade Fight? Not the Side That Moved First" }
+        },
+        {
+          "label": "Kavara tests the new baseline",
+          "delay_turns": 4,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "sanctions_rollback" } ],
+          "effects": { "countries.rival_state_a.military_tension": 5, "public.crisis_level": 3 },
+          "hidden_effects": { "hidden.rival_risk_tolerance": 6, "hidden.escalation_pressure": 4 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "Kavara probed American resolve after the rollback",
+            "target": "rival_state_a",
+            "result": "pressure resumed on a different front",
+            "tags": ["kavara", "credibility", "escalation"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Kavara Presses on a New Front After the Trade Settlement" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "negotiated a mutual rollback of trade restrictions",
+        "target": "rival_state_a",
+        "result": "exports restored; enforcement credibility spent",
+        "tags": ["trade", "rollback", "credibility"]
+      },
+      "outcome_text": "Both lists were suspended in a joint announcement that ran to nine lines and named no one as the party that had moved first. The nine states were relieved; the National Security Council was not.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Washington and Kavara Suspend Trade Restrictions" },
+        { "outlet_id": "world-desk", "title": "The World Reads a Mutual Rollback" }
+      ]
+    }
+  ],
+  "followup_events": []
+}

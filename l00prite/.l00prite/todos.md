@@ -1,13 +1,9 @@
 # Prioritized TODOs
 
 ## Next
-- [ ] Engine core: `Random`, `Schema`, `GameState`, `Effects`, `Conditions`, `ContentRepository`.
-- [ ] Engine systems: `DelayedConsequenceQueue`, `EventEngine`, `DecisionEngine`, `TurnEngine`, drift systems, `MemorySystem`, `MediaSystem`, `AdvisorSystem`, `GameEngine` facade.
-- [ ] Content: scenario `new-administration`, six event cards, advisors, countries, outlets.
-- [ ] WordPress layer: bootstrap, activator (dbDelta), save manager, game controller, REST API, shortcode, assets, admin settings (dev mode, create page), uninstall.
-- [ ] AI seam: `AIProviderInterface`, `TemplateAIProvider`.
-- [ ] Frontend: game shell, CSS design system, JS app/api/store/views, world map placeholder, developer panel.
-- [ ] Engine tests + `tests/run.php`; plugin README; docs.
+- [ ] Maintainer review of the 0.1.0 branch (review-gated: REST permission callbacks, save ownership, `class-activator.php`, `uninstall.php`).
+- [ ] Optional: run `phpcs` with WPCS against `config/phpcs.xml.dist` and clean any style findings (no functional impact).
+- [ ] Balance pass on drift constants after a few full-year playthroughs (approval trends slightly negative under all-first-choice play).
 
 ## Later
 - [ ] Guest/local-storage save store behind `SaveStoreInterface`.
@@ -18,3 +14,4 @@
 
 ## Done
 - 2026-09-08 — l00prite protocol scaffolded (Planning Mode).
+- 2026-09-08 — 0.1.0 skeleton built: engine core + systems, 8 event cards, advisors/countries/outlets, WordPress layer (dbDelta table, REST, shortcode, full-screen page, admin), template AI seam, command-center UI, developer mode, 60-check test suite, README/docs/CI. Verified end-to-end in a browser on a real WordPress.

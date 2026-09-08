@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="1000" height="440"
+     role="img" aria-labelledby="mrp-map-title mrp-map-desc" preserveAspectRatio="xMidYMid slice">
+  <title id="mrp-map-title">Stylised world situation map</title>
+  <desc id="mrp-map-desc">A simplified silhouette world map used as the situation-room backdrop. Regions carry data-region identifiers for future markers.</desc>
+
+  <defs>
+    <linearGradient id="mrp-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1622"/>
+      <stop offset="1" stop-color="#080b11"/>
+    </linearGradient>
+    <linearGradient id="mrp-land" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2b3d"/>
+      <stop offset="1" stop-color="#152030"/>
+    </linearGradient>
+    <radialGradient id="mrp-glow" cx="0.5" cy="0.12" r="0.85">
+      <stop offset="0" stop-color="#3f6ea8" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#3f6ea8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1000" height="440" fill="url(#mrp-sea)"/>
+  <rect width="1000" height="440" fill="url(#mrp-glow)"/>
+
+  <!-- Graticule: 30 degree grid, deliberately faint. -->
+  <g stroke="#5f93d0" stroke-opacity="0.10" stroke-width="1" fill="none" shape-rendering="crispEdges">
+    <path d="M83 0V440M167 0V440M250 0V440M333 0V440M417 0V440M500 0V440M583 0V440M667 0V440M750 0V440M833 0V440M917 0V440"/>
+    <path d="M0 28H1000M0 111H1000M0 194H1000M0 278H1000M0 361H1000"/>
+  </g>
+  <path d="M0 250H1000" stroke="#c9a227" stroke-opacity="0.16" stroke-width="1" fill="none"/>
+
+  <g id="mrp-landmasses" fill="url(#mrp-land)" stroke="#5f93d0" stroke-opacity="0.34" stroke-width="1"
+     stroke-linejoin="round">
+
+    <g id="mrp-region-north-america" data-region="north-america">
+      <path d="M33 67 111 56 153 83 158 114 175 158 208 189 231 206 269 222 278 181 292 153 317 125 347 111 333 89 278 78 236 56 153 50Z"/>
+      <path d="M375 83 444 56 431 22 375 19 333 33 347 61Z"/>
+    </g>
+
+    <g id="mrp-region-south-america" data-region="south-america">
+      <path d="M275 250 292 264 306 300 303 333 297 375 311 403 328 361 353 342 367 319 403 272 361 250 333 236 292 228Z"/>
+    </g>
+
+    <g id="mrp-region-europe" data-region="europe">
+      <path d="M472 131 475 147 500 144 533 144 550 139 567 136 578 125 583 122 597 125 611 117 611 94 586 83 567 67 556 56 533 72 522 89 514 103 500 108 486 117Z"/>
+    </g>
+
+    <g id="mrp-region-africa" data-region="africa">
+      <path d="M453 208 453 192 472 167 500 153 528 158 556 161 589 164 597 189 606 208 619 219 642 217 633 244 611 272 597 300 589 322 569 344 550 344 533 300 525 256 508 239 486 236 467 228Z"/>
+    </g>
+
+    <g id="mrp-region-middle-east" data-region="middle-east">
+      <path d="M589 164 597 189 606 214 622 217 644 181 667 181 672 161 656 144 633 139 611 147 597 150Z"/>
+    </g>
+
+    <g id="mrp-region-eurasia" data-region="eurasia">
+      <path d="M611 94 633 111 667 106 708 111 742 114 778 111 819 125 861 128 889 111 903 89 944 83 972 67 1000 61 1000 50 889 44 778 36 694 47 639 61 611 67Z"/>
+    </g>
+
+    <g id="mrp-region-east-asia" data-region="east-asia">
+      <path d="M708 139 736 167 764 178 792 194 811 194 833 183 839 164 844 139 864 128 875 117 847 111 819 125 778 111 742 114 722 125Z"/>
+      <path d="M886 144 897 133 906 147 897 164 883 158Z"/>
+      <path d="M875 172 884 167 889 178 878 183Z"/>
+    </g>
+
+    <g id="mrp-region-south-asia" data-region="south-asia">
+      <path d="M689 183 700 194 714 228 722 222 744 189 756 189 747 178 722 167Z"/>
+    </g>
+
+    <g id="mrp-region-oceania" data-region="oceania">
+      <path d="M817 311 839 300 861 283 889 281 906 303 917 319 925 328 917 353 897 358 878 347 858 339 819 344 814 322Z"/>
+      <path d="M789 258 811 250 828 261 806 272 792 269Z"/>
+      <path d="M836 269 858 264 869 275 847 283Z"/>
+      <path d="M797 289 814 286 819 297 800 297Z"/>
+    </g>
+
+  </g>
+
+  <!-- Marker layer: the JS map view appends event/location markers here. -->
+  <g id="mrp-markers"></g>
+</svg>

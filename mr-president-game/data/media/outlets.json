@@ -1,0 +1,292 @@
+{
+  "outlets": [
+    {
+      "id": "national-wire",
+      "name": "National Wire",
+      "tone": "neutral",
+      "templates": {
+        "economy": [
+          "White House Responds to {event_short} With {choice}",
+          "{president} Orders {choice} Amid Economic Strain",
+          "Administration Details Economic Plan After {event_short}"
+        ],
+        "domestic": [
+          "{president} Announces {choice} Following {event_short}",
+          "White House Addresses {event_short}",
+          "Administration Sets Domestic Course After {event_short}"
+        ],
+        "security": [
+          "White House Announces Measures Following {event_short}",
+          "{president} Selects {choice} in Response to {event_short}",
+          "National Security Team Briefs the Nation on {event_short}"
+        ],
+        "diplomacy": [
+          "{president} Chooses {choice} in Response to {event_short}",
+          "White House Opens Talks After {event_short}",
+          "Administration Signals Its Position on {event_short}"
+        ],
+        "military": [
+          "Pentagon Executes {choice} After {event_short}",
+          "{president} Approves {choice} in the Wake of {event_short}",
+          "Defense Officials Detail Posture Following {event_short}"
+        ],
+        "congress": [
+          "White House and Congress Clash Over {event_short}",
+          "{president} Presses Lawmakers After {event_short}",
+          "Capitol Hill Reacts to {choice}"
+        ],
+        "disaster": [
+          "Federal Response Underway After {event_short}",
+          "{president} Directs {choice} as Recovery Begins",
+          "White House Coordinates Relief Following {event_short}"
+        ],
+        "technology": [
+          "Administration Unveils {choice} After {event_short}",
+          "{president} Addresses Industry Following {event_short}",
+          "White House Sets Technology Course After {event_short}"
+        ],
+        "energy": [
+          "{president} Orders {choice} as Fuel Costs Climb",
+          "White House Responds to {event_short}",
+          "Administration Details Energy Plan After {event_short}"
+        ],
+        "public_health": [
+          "Health Officials Brief the Nation on {event_short}",
+          "{president} Approves {choice} as Response Expands",
+          "White House Coordinates Federal Health Response to {event_short}"
+        ],
+        "cyber": [
+          "White House Confirms Response to {event_short}",
+          "{president} Orders {choice} After Network Breach",
+          "Federal Agencies Begin Recovery Following {event_short}"
+        ],
+        "intelligence": [
+          "White House Reviews Findings on {event_short}",
+          "{president} Briefed as Assessment Circulates",
+          "Administration Weighs Its Response to {event_short}"
+        ],
+        "default": [
+          "{president} Responds to {event_short}",
+          "White House Announces {choice}",
+          "Administration Acts Following {event_short}"
+        ]
+      }
+    },
+    {
+      "id": "capital-observer",
+      "name": "Capital Observer",
+      "tone": "skeptical",
+      "templates": {
+        "economy": [
+          "Questions Mount Over {choice} as {event_short} Deepens",
+          "Is {choice} Enough? Economists Are Split",
+          "White House Bets on {choice} With Little Margin"
+        ],
+        "domestic": [
+          "{president} Picks {choice}; Critics Ask Who Pays",
+          "Behind {choice}: The Politics of {event_short}",
+          "White House Response to {event_short} Draws Scrutiny"
+        ],
+        "security": [
+          "{choice}: Decisive Action or Costly Gamble?",
+          "Analysts Question the Timing of {choice}",
+          "What the White House Is Not Saying About {event_short}"
+        ],
+        "diplomacy": [
+          "Allies Wary as {president} Opts for {choice}",
+          "{choice} Leaves the Hardest Questions Unanswered",
+          "Diplomatic Fallout Expected From {event_short}"
+        ],
+        "military": [
+          "{choice} Raises the Stakes After {event_short}",
+          "Pentagon Plan Draws Skeptics on the Hill",
+          "Escalation Risk Grows Following {event_short}"
+        ],
+        "congress": [
+          "{president} Struggles for Votes After {event_short}",
+          "Leadership Doubts {choice} Can Pass",
+          "Budget Standoff Tests White House Leverage"
+        ],
+        "disaster": [
+          "Relief Effort Lags as {event_short} Widens",
+          "{choice} Faces Questions Over Cost and Speed",
+          "Local Officials Say Washington Moved Too Slowly"
+        ],
+        "technology": [
+          "{choice} Draws Fire From Industry and Watchdogs",
+          "Regulators Left Guessing After {event_short}",
+          "White House Technology Push Long on Ambition, Short on Detail"
+        ],
+        "energy": [
+          "Consumers Bear the Cost of {choice}",
+          "{president} Faces Backlash Over {event_short}",
+          "Energy Plan Draws Doubts From Both Parties"
+        ],
+        "public_health": [
+          "{choice} Tested by an Already Strained System",
+          "Health Response to {event_short} Under Review",
+          "Officials Defend a Slow Start on {event_short}"
+        ],
+        "cyber": [
+          "Breach Exposes Gaps the White House Long Ignored",
+          "{choice} Comes After Weeks of Unheeded Warnings",
+          "Who Is Accountable for {event_short}?"
+        ],
+        "intelligence": [
+          "The Assessment Behind {choice} Remains Thin",
+          "{president} Acts on Contested Intelligence",
+          "Analysts Split Over {event_short}"
+        ],
+        "default": [
+          "{choice} Leaves Washington Divided",
+          "{president} Under Pressure After {event_short}",
+          "The Unanswered Questions Behind {event_short}"
+        ]
+      }
+    },
+    {
+      "id": "american-ledger",
+      "name": "American Ledger",
+      "tone": "establishment",
+      "templates": {
+        "economy": [
+          "Markets Steady as {president} Adopts {choice}",
+          "{choice} Seen as a Measured Response to {event_short}",
+          "Business Groups Weigh the Terms of {choice}"
+        ],
+        "domestic": [
+          "Institutions Hold as the White House Pursues {choice}",
+          "{choice} Wins Cautious Support in Washington",
+          "Governors Line Up Behind the Federal Response"
+        ],
+        "security": [
+          "Defense Establishment Backs {choice}",
+          "{choice} Restores Predictability, Officials Say",
+          "Security Community Completes Its Review of {event_short}"
+        ],
+        "diplomacy": [
+          "Foreign Policy Veterans Endorse {choice}",
+          "{choice} Signals Continuity After {event_short}",
+          "Allied Capitals Register Quiet Relief"
+        ],
+        "military": [
+          "Joint Chiefs Support {choice}",
+          "Force Posture Adjusted After {event_short}",
+          "Readiness Costs Rise With {choice}"
+        ],
+        "congress": [
+          "Committee Chairs Open the Door to {choice}",
+          "{president} Seeks a Bipartisan Path After {event_short}",
+          "Appropriators Signal Room for a Deal"
+        ],
+        "disaster": [
+          "Federal-State Coordination Improves Under {choice}",
+          "{choice} Speeds Aid to Affected Regions",
+          "Recovery Financing Takes Shape After {event_short}"
+        ],
+        "technology": [
+          "Industry Leaders Meet the White House on {event_short}",
+          "{choice} Sets Standards Firms Can Plan Around",
+          "Capital Spending Expected to Follow {choice}"
+        ],
+        "energy": [
+          "Refiners and Utilities Adjust to {choice}",
+          "{choice} Aims to Steady Fuel Markets",
+          "Strategic Reserves in Focus After {event_short}"
+        ],
+        "public_health": [
+          "Hospital Systems Back {choice}",
+          "{choice} Adds Capacity Where It Is Needed Most",
+          "Public Health Officials Praise the Coordination"
+        ],
+        "cyber": [
+          "Critical Infrastructure Operators Adopt {choice}",
+          "{choice} Tightens Federal Network Standards",
+          "Insurers Reassess Risk After {event_short}"
+        ],
+        "intelligence": [
+          "Oversight Committees Briefed on {event_short}",
+          "{choice} Follows the Standard Assessment Process",
+          "Intelligence Community Closes Ranks After {event_short}"
+        ],
+        "default": [
+          "{president} Adopts {choice} After {event_short}",
+          "Washington Settles on {choice}",
+          "Establishment Voices Back the White House on {event_short}"
+        ]
+      }
+    },
+    {
+      "id": "world-desk",
+      "name": "World Desk",
+      "tone": "international",
+      "templates": {
+        "economy": [
+          "Global Markets Watch as Washington Chooses {choice}",
+          "{event_short} Ripples Through Trading Partners",
+          "Foreign Capitals Assess the American Response"
+        ],
+        "domestic": [
+          "American Politics Turn Inward After {event_short}",
+          "{president} Faces a Domestic Test With Global Stakes",
+          "Allies Read {choice} for Signals"
+        ],
+        "security": [
+          "Capitals Abroad Weigh the American Response to {event_short}",
+          "{choice} Redraws Regional Calculations",
+          "Deterrence in Question After {event_short}"
+        ],
+        "diplomacy": [
+          "Partners Welcome, and Question, {choice}",
+          "{choice} Reshapes Talks Already Underway",
+          "Diplomats Say {event_short} Changed the Room"
+        ],
+        "military": [
+          "Regional Forces Repositioned After {event_short}",
+          "{choice} Tests the Limits of Alliance Patience",
+          "Neighbouring States Brace for Escalation"
+        ],
+        "congress": [
+          "American Legislative Fight Slows Foreign Commitments",
+          "Partners Watch a Washington Budget Standoff",
+          "{choice} Hostage to Domestic Arithmetic"
+        ],
+        "disaster": [
+          "International Aid Offers Follow {event_short}",
+          "{choice} Draws Comparisons Abroad",
+          "Relief Corridors Open After {event_short}"
+        ],
+        "technology": [
+          "Standards Fight Goes Global After {event_short}",
+          "{choice} Splits Technology Partners",
+          "Export Rules Redrawn Following {event_short}"
+        ],
+        "energy": [
+          "Producers Respond to {choice}",
+          "{event_short} Tightens Global Supply",
+          "Energy Diplomacy Enters a Harder Phase"
+        ],
+        "public_health": [
+          "Cross-Border Response Follows {event_short}",
+          "{choice} Shapes International Guidance",
+          "Health Ministries Coordinate After {event_short}"
+        ],
+        "cyber": [
+          "Attribution Fight Follows {event_short}",
+          "{choice} Sets a Precedent Others Will Follow",
+          "Foreign Ministries Deny Involvement in {event_short}"
+        ],
+        "intelligence": [
+          "Allied Services Compare Notes on {event_short}",
+          "{choice} Strains Intelligence Sharing",
+          "Foreign Governments Dispute the American Findings"
+        ],
+        "default": [
+          "The World Reads {choice}",
+          "{event_short} Lands Beyond American Borders",
+          "Washington's Response Echoes Abroad"
+        ]
+      }
+    }
+  ]
+}

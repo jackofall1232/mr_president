@@ -1,0 +1,90 @@
+{
+  "countries": [
+    {
+      "id": "china",
+      "name": "People's Republic of China",
+      "kind": "rival_power",
+      "map_id": "cn",
+      "leader_title": "President",
+      "leader_name": "Lin Zhaoyu",
+      "baseline": {
+        "relationship": 10,
+        "trust": 35,
+        "trade_dependency": 55,
+        "military_tension": 30
+      }
+    },
+    {
+      "id": "russia",
+      "name": "Russian Federation",
+      "kind": "rival_power",
+      "map_id": "ru",
+      "leader_title": "President",
+      "leader_name": "Arkady Solovyov",
+      "baseline": {
+        "relationship": -5,
+        "trust": 30,
+        "trade_dependency": 15,
+        "military_tension": 35
+      }
+    },
+    {
+      "id": "european_allies",
+      "name": "European Allies",
+      "kind": "ally_bloc",
+      "map_id": "eu",
+      "leader_title": "Council President",
+      "leader_name": "Helene Marchetti",
+      "baseline": {
+        "relationship": 60,
+        "trust": 65,
+        "trade_dependency": 60,
+        "military_tension": 0,
+        "cooperation": 65
+      }
+    },
+    {
+      "id": "pacific_allies",
+      "name": "Pacific Allies",
+      "kind": "ally_bloc",
+      "map_id": "ap",
+      "leader_title": "Coordinating Minister",
+      "leader_name": "Takeshi Aramaki",
+      "baseline": {
+        "relationship": 55,
+        "trust": 60,
+        "trade_dependency": 50,
+        "military_tension": 0,
+        "cooperation": 60
+      }
+    },
+    {
+      "id": "gulf_states",
+      "name": "Gulf States",
+      "kind": "partner",
+      "map_id": "gs",
+      "leader_title": "Chair of the Cooperation Council",
+      "leader_name": "Faisal al-Mansuri",
+      "baseline": {
+        "relationship": 30,
+        "trust": 45,
+        "trade_dependency": 45,
+        "military_tension": 10
+      }
+    },
+    {
+      "id": "rival_state_a",
+      "name": "Republic of Kavara",
+      "kind": "rival_state",
+      "map_id": "kv",
+      "leader_title": "Chairman of the State Council",
+      "leader_name": "Doran Vekhtar",
+      "baseline": {
+        "relationship": -40,
+        "trust": 10,
+        "trade_dependency": 5,
+        "military_tension": 60
+      }
+    }
+  ]
+}

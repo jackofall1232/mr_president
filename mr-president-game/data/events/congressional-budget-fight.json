@@ -1,0 +1,304 @@
+{
+  "id": "congressional-budget-fight",
+  "title": "Appropriations Standoff Threatens a Shutdown",
+  "flash_label": "LEGISLATIVE BRIEF",
+  "category": "congress",
+  "severity": 1,
+  "summary": "Four appropriations bills are stalled over a spending dispute the leadership says it cannot resolve without you.",
+  "briefing_text": "Four of the twelve appropriations bills remain unresolved with nineteen days until the continuing resolution lapses. The dispute is narrow in substance and wide in symbolism: roughly nine billion dollars across two accounts that both sides have made a test of the new administration. Leadership in both chambers has signalled privately that a deal exists, and neither is willing to move first. A lapse would furlough non-essential functions and cost the economy more than the contested accounts are worth.",
+  "location": { "region": "domestic" },
+  "start_conditions": [ { "min_turn": 2 } ],
+  "weight": 11,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "public.congress_support", "op": "<=", "value": 45 } ], "multiply": 1.6 },
+    { "conditions": [ { "flag": "election_year" } ], "multiply": 1.3 }
+  ],
+  "cooldown": 8,
+  "max_occurrences": 3,
+  "exclusive_with": [],
+  "expiry": null,
+  "tags": ["congress", "budget", "shutdown", "appropriations"],
+  "cabinet_assessment": {
+    "state": "A lapse would suspend assessed contributions and delay two treaty ratifications, Mr. President. Our partners read a shutdown as a statement about American reliability, fairly or not.",
+    "defense": "If the continuing resolution lapses I stop flying hours and steaming days within three weeks, sir. That is the whole of my position and I would rather state it once than repeat it in testimony.",
+    "treasury": "The scoring will decide the vote count more than the rhetoric will. Give me forty-eight hours with the committee staff and I can make the contested accounts smaller than they look.",
+    "nsa": "A visibly divided Washington is itself a signal to adversaries. Whatever you choose, choose it with the appearance of command.",
+    "chief_of_staff": "I have the whip count and it is tighter than the leadership admits, sir. Spending capital here means not spending it in the spring, and you only get one spring.",
+    "intelligence": "I can brief the intelligence committees in closed session today. A lapse interrupts three collection programmes that are difficult to restart cleanly."
+  },
+  "choices": [
+    {
+      "id": "compromise-deal",
+      "label": "Cut a Bipartisan Deal",
+      "description": "Split the difference on the contested accounts and get the bills to your desk before the deadline.",
+      "advisor_positions": {
+        "treasury": "It costs eighteen billion over the profile, Mr. President, and it buys a functioning government. I would take that trade today.",
+        "chief_of_staff": "You will be accused of caving by people who cannot count votes. The bills pass, which is the only metric that survives the week."
+      },
+      "effects": {
+        "public.congress_support": 7,
+        "public.approval": 1,
+        "public.domestic_stability": 2,
+        "public.deficit": 18,
+        "public.national_debt": 18
+      },
+      "hidden_effects": {
+        "hidden.political_capital": -6,
+        "hidden.credibility": -2,
+        "hidden.institutional_trust": 3,
+        "hidden.media_goodwill": 1
+      },
+      "flags": { "budget_deal": true },
+      "counters": { "budget_deals": 1 },
+      "delayed": [
+        {
+          "label": "Working relationship with the leadership improves",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.8,
+          "conditions": [],
+          "effects": { "public.congress_support": 2 },
+          "hidden_effects": { "hidden.political_capital": 3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Appropriators Signal Room for a Second Deal" }
+        },
+        {
+          "label": "Deficit consequences of the deal surface",
+          "delay_turns": 4,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "public.deficit", "op": ">=", "value": 150 } ],
+          "effects": { "public.approval": -2 },
+          "hidden_effects": { "hidden.media_goodwill": -3, "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "congress",
+            "action": "absorbed criticism of the bipartisan spending deal",
+            "target": "congress",
+            "result": "deal held; fiscal reputation weakened",
+            "tags": ["budget", "deficit", "congress"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "The Deal Everyone Signed and Nobody Will Defend" }
+        }
+      ],
+      "memory": {
+        "type": "congress",
+        "action": "brokered a bipartisan appropriations deal",
+        "target": "congress",
+        "result": "shutdown avoided at fiscal and reputational cost",
+        "tags": ["budget", "congress", "compromise"]
+      },
+      "outcome_text": "The bills cleared with four days to spare and eighteen billion more than the White House had requested. Both leaders claimed victory on camera and neither made eye contact.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Congress Clears Appropriations After White House Deal" },
+        { "outlet_id": "american-ledger", "title": "Committee Chairs Open the Door to a Bipartisan Path" }
+      ]
+    },
+    {
+      "id": "veto-threat",
+      "label": "Issue a Veto Threat",
+      "description": "State publicly that any bill containing the contested provisions will be vetoed.",
+      "advisor_positions": {
+        "chief_of_staff": "It works if you are prepared to actually veto, Mr. President. If you are not, do not say it, because they will find out within the week.",
+        "defense": "A lapse costs me readiness I cannot buy back in the same fiscal year, sir. I will support the position and I want that consequence on the record."
+      },
+      "effects": {
+        "public.congress_support": -6,
+        "public.approval": 2,
+        "public.domestic_stability": -3,
+        "public.crisis_level": 2
+      },
+      "hidden_effects": {
+        "hidden.credibility": 5,
+        "hidden.political_capital": -4,
+        "hidden.institutional_trust": -2,
+        "hidden.media_goodwill": -1
+      },
+      "flags": { "veto_threat_issued": true },
+      "counters": { "veto_threats": 1 },
+      "delayed": [
+        {
+          "label": "Standoff hardens into a lapse",
+          "delay_turns": 2,
+          "window_turns": 4,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "public.congress_support", "op": "<=", "value": 42 } ],
+          "effects": { "public.domestic_stability": -3, "public.approval": -3, "public.gdp_growth": -0.2 },
+          "hidden_effects": { "hidden.institutional_trust": -4, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "congress",
+            "action": "appropriations lapsed after the veto threat",
+            "target": "congress",
+            "result": "shutdown costs absorbed; positions unchanged",
+            "tags": ["shutdown", "budget", "congress"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "Nineteen Days of Brinkmanship, and Nobody Blinked" }
+        },
+        {
+          "label": "Leadership concedes the contested accounts",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.6,
+          "conditions": [],
+          "effects": { "public.congress_support": 3, "public.deficit": -8 },
+          "hidden_effects": { "hidden.credibility": 3, "hidden.political_capital": 2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Contested Accounts Dropped as Leadership Yields" }
+        }
+      ],
+      "memory": {
+        "type": "congress",
+        "action": "issued a veto threat over the contested appropriations",
+        "target": "congress",
+        "result": "credibility asserted; relations with the Hill damaged",
+        "tags": ["veto", "budget", "congress"]
+      },
+      "outcome_text": "The Statement of Administration Policy went out at four in the afternoon and used the word veto twice. The Speaker's office responded in eleven minutes, and not in kind.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Threatens Veto as Appropriations Deadline Nears" },
+        { "outlet_id": "capital-observer", "title": "{president} Struggles for Votes After a Public Ultimatum" }
+      ]
+    },
+    {
+      "id": "public-pressure",
+      "label": "Take the Case to the Country",
+      "description": "Bypass the leadership with a national address and a travel schedule through contested districts.",
+      "advisor_positions": {
+        "chief_of_staff": "Four cities in five days and the numbers move, Mr. President. So does the resentment in every office whose district you visit.",
+        "state": "I would keep the foreign consequences of a lapse in the address, sir. It is the argument that travels furthest with people who do not follow appropriations."
+      },
+      "effects": {
+        "public.approval": 3,
+        "public.congress_support": -3,
+        "public.domestic_stability": -1
+      },
+      "hidden_effects": {
+        "hidden.media_goodwill": 4,
+        "hidden.political_capital": -3,
+        "hidden.institutional_trust": -1,
+        "hidden.credibility": 2
+      },
+      "flags": { "public_campaign": true },
+      "counters": { "national_addresses": 1 },
+      "delayed": [
+        {
+          "label": "Public pressure moves the vote count",
+          "delay_turns": 2,
+          "mode": "due",
+          "chance": 0.6,
+          "conditions": [],
+          "effects": { "public.congress_support": 4, "public.approval": 1 },
+          "hidden_effects": { "hidden.political_capital": 2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "congress",
+            "action": "public campaign moved wavering members on appropriations",
+            "target": "congress",
+            "result": "votes secured outside the leadership channel",
+            "tags": ["budget", "public_opinion", "congress"]
+          },
+          "headline": { "outlet_id": "national-wire", "title": "Members Shift as Pressure Builds in Contested Districts" }
+        },
+        {
+          "label": "Campaign fails to move a weak position",
+          "delay_turns": 3,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.4,
+          "conditions": [ { "path": "public.approval", "op": "<=", "value": 45 } ],
+          "effects": { "public.congress_support": -4, "public.approval": -1 },
+          "hidden_effects": { "hidden.political_capital": -4, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "The Tour That Changed Nothing but the Travel Budget" }
+        }
+      ],
+      "memory": {
+        "type": "congress",
+        "action": "campaigned publicly over the appropriations standoff",
+        "target": "domestic",
+        "result": "attention won; leadership relations strained",
+        "tags": ["budget", "public_opinion", "congress"]
+      },
+      "outcome_text": "The address ran eleven minutes and the travel schedule ran five days. Two members announced they would support the bills; four others stopped returning calls from the West Wing.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Takes the Budget Fight to the Country" },
+        { "outlet_id": "world-desk", "title": "Partners Watch a Washington Budget Standoff" }
+      ]
+    },
+    {
+      "id": "concede-priorities",
+      "label": "Concede the Contested Programs",
+      "description": "Withdraw the disputed administration priorities and clear the bills without a fight.",
+      "advisor_positions": {
+        "treasury": "It saves twelve billion and passes tomorrow, Mr. President. What it costs is the assumption that your requests mean anything next year.",
+        "chief_of_staff": "Every future negotiation starts from this precedent, sir. They will remember exactly how long it took you to fold."
+      },
+      "effects": {
+        "public.congress_support": 5,
+        "public.deficit": -12,
+        "public.approval": -4,
+        "public.domestic_stability": -2
+      },
+      "hidden_effects": {
+        "hidden.political_capital": 4,
+        "hidden.credibility": -6,
+        "hidden.media_goodwill": -2,
+        "hidden.institutional_trust": 1
+      },
+      "flags": { "priorities_conceded": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Concession is read as a pattern",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.7,
+          "conditions": [],
+          "effects": { "public.approval": -1, "public.congress_support": -2 },
+          "hidden_effects": { "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "A White House That Asks, Then Withdraws" }
+        },
+        {
+          "label": "Goodwill converted into a later win",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.45,
+          "conditions": [ { "flag": "priorities_conceded" } ],
+          "effects": { "public.congress_support": 3, "public.domestic_stability": 2 },
+          "hidden_effects": { "hidden.political_capital": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "congress",
+            "action": "traded the conceded accounts for later cooperation",
+            "target": "congress",
+            "result": "capital recovered on a subsequent bill",
+            "tags": ["budget", "congress", "trade_off"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Leadership Returns the Favour on a Second Bill" }
+        }
+      ],
+      "memory": {
+        "type": "congress",
+        "action": "withdrew the contested administration priorities",
+        "target": "congress",
+        "result": "bills cleared; presidential leverage reduced",
+        "tags": ["budget", "concession", "congress"]
+      },
+      "outcome_text": "The withdrawal letter was three paragraphs and went out on a Friday evening. The bills passed on Monday by a margin large enough to be embarrassing.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Withdraws Contested Budget Priorities" },
+        { "outlet_id": "capital-observer", "title": "The Fight That Ended Before It Started" }
+      ]
+    }
+  ],
+  "followup_events": []
+}

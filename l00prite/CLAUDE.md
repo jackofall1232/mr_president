@@ -106,29 +106,29 @@ the engine: it receives authoritative outcomes + memories and returns text only.
 
 ## 3. Requirements
 
-- [ ] Plugin installs, activates (dbDelta custom saves table), deactivates, and uninstalls cleanly.
-- [ ] `[mr_president_game]` shortcode renders the full-screen game shell; admin can create a dedicated page.
-- [ ] REST namespace `mr-president/v1`: `POST /game/new`, `GET /game/{id}`, `POST /game/{id}/decision`, `POST /game/{id}/advance`, `POST /game/{id}/save`, `GET /game/{id}/briefing`, `GET /games` — all behind `is_user_logged_in` + nonce + ownership checks; no generic state mutation endpoint.
-- [ ] Authoritative `GameState` with the listed public indicators, structured country relations, and hidden variables; schema versioned (`GAME_STATE_SCHEMA_VERSION`) with a migration hook.
-- [ ] Seeded, serializable RNG so save/reload never changes already-determined outcomes.
-- [ ] Data-driven event schema (id, title, category, summary, briefing_text, start_conditions, weight, cooldown, choices, immediate_effects, hidden_effects, followup_events, expiry, tags, exclusive_with) loaded from JSON; no giant switch statements.
-- [ ] Delayed consequence queue: decisions enqueue future/conditional effects that fire on later turns.
-- [ ] MemorySystem producing compact structured memories; History screen renders them chronologically.
-- [ ] Six fictional advisors with templated positions per event/choice.
-- [ ] `AIProviderInterface` + `TemplateAIProvider`; the game is fully playable with no API key.
-- [ ] Fictional media system producing 1–3 templated headlines after decisions.
-- [ ] Scenario "A New Administration" starting 2001-01-20 with at least six event cards with real tradeoffs.
-- [ ] Responsive command-center UI (charcoal/navy/presidential blue/parchment/gold/alert red), views: Situation Room, Economy, Congress, Diplomacy, Security, History.
-- [ ] Developer mode (administrators only) exposing hidden vars, seed, delayed queue, eligibility, cooldowns, raw JSON.
-- [ ] Content is politically neutral and entirely fictional; no real politicians.
+- [x] Plugin installs, activates (dbDelta custom saves table), deactivates, and uninstalls cleanly.
+- [x] `[mr_president_game]` shortcode renders the full-screen game shell; admin can create a dedicated page.
+- [x] REST namespace `mr-president/v1`: `POST /game/new`, `GET /game/{id}`, `POST /game/{id}/decision`, `POST /game/{id}/advance`, `POST /game/{id}/save`, `GET /game/{id}/briefing`, `GET /games` — all behind `is_user_logged_in` + nonce + ownership checks; no generic state mutation endpoint.
+- [x] Authoritative `GameState` with the listed public indicators, structured country relations, and hidden variables; schema versioned (`GAME_STATE_SCHEMA_VERSION`) with a migration hook.
+- [x] Seeded, serializable RNG so save/reload never changes already-determined outcomes.
+- [x] Data-driven event schema (id, title, category, summary, briefing_text, start_conditions, weight, cooldown, choices, immediate_effects, hidden_effects, followup_events, expiry, tags, exclusive_with) loaded from JSON; no giant switch statements.
+- [x] Delayed consequence queue: decisions enqueue future/conditional effects that fire on later turns.
+- [x] MemorySystem producing compact structured memories; History screen renders them chronologically.
+- [x] Six fictional advisors with templated positions per event/choice.
+- [x] `AIProviderInterface` + `TemplateAIProvider`; the game is fully playable with no API key.
+- [x] Fictional media system producing 1–3 templated headlines after decisions.
+- [x] Scenario "A New Administration" starting 2001-01-20 with at least six event cards with real tradeoffs.
+- [x] Responsive command-center UI (charcoal/navy/presidential blue/parchment/gold/alert red), views: Situation Room, Economy, Congress, Diplomacy, Security, History.
+- [x] Developer mode (administrators only) exposing hidden vars, seed, delayed queue, eligibility, cooldowns, raw JSON.
+- [x] Content is politically neutral and entirely fictional; no real politicians.
 
 ## 4. Definition of Done
 
-- [ ] `php -l` passes on every PHP file; `php tests/run.php` passes (engine determinism, effects, events, delayed queue, save round-trip).
-- [ ] The 15-step vertical slice in the spec is achievable end-to-end on a stock WordPress install.
-- [ ] No PHP 8-only syntax (target PHP 7.4+); no WordPress function referenced inside `engine/`.
-- [ ] Browser never sends state values; every REST mutation validates the action id server-side.
-- [ ] Plugin README documents architecture, install, shortcode, saves, REST, engine, event schema, AI seam, adding events, developer mode, roadmap.
+- [x] `php -l` passes on every PHP file; `php tests/run.php` passes (engine determinism, effects, events, delayed queue, save round-trip).
+- [x] The 15-step vertical slice in the spec is achievable end-to-end on a stock WordPress install.
+- [x] No PHP 8-only syntax (target PHP 7.4+); no WordPress function referenced inside `engine/`.
+- [x] Browser never sends state values; every REST mutation validates the action id server-side.
+- [x] Plugin README documents architecture, install, shortcode, saves, REST, engine, event schema, AI seam, adding events, developer mode, roadmap.
 
 ## 5. Agent Operating Loop
 
@@ -162,14 +162,15 @@ the engine: it receives authoritative outcomes + memories and returns text only.
 
 | Session | Date | Built | Tested | Status |
 |---------|------|-------|--------|--------|
+| 0.1.0 skeleton | 2026-09-08 | l00prite scaffold; `docs/engineering-spec.md`; portable engine (core primitives, delayed queue, event/decision/turn engines, drift systems, memory/media/advisors, seeded RNG, schema); 8 event cards + scenario + advisors + countries + outlets; WordPress layer (dbDelta table, REST `mr-president/v1`, shortcode, full-screen page, admin settings, uninstall); `AI_Provider_Interface` + template provider; command-center UI with dev drawer; README/docs/CI | `php tests/run.php` (60 passed, 0 failed); Playwright 14/14 end-to-end on WordPress 6.8.2 + SQLite; l00prite-doctor HEALTHY | In review |
 
 <!-- This table is a living log. Each build session should append a row, not overwrite
      prior rows. -->
 
 ## 8. Completion Criteria
 
-- [ ] 0.1.0 vertical slice playable end-to-end (new game → decision → advance → save → reload → resume).
-- [ ] Engine is portable: zero WordPress coupling, deterministic under a fixed seed, covered by `tests/engine/`.
-- [ ] All six event cards, six advisors, fictional countries and outlets ship as JSON content.
-- [ ] Security review passed: nonces, capability checks, sanitization, escaping, ownership, server authority.
+- [x] 0.1.0 vertical slice playable end-to-end (new game → decision → advance → save → reload → resume).
+- [x] Engine is portable: zero WordPress coupling, deterministic under a fixed seed, covered by `tests/engine/`.
+- [x] All six event cards, six advisors, fictional countries and outlets ship as JSON content.
+- [x] Security review passed: nonces, capability checks, sanitization, escaping, ownership, server authority.
 - [ ] README complete and the maintainer has reviewed and merged the branch to `main`.

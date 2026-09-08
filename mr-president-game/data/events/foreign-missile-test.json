@@ -1,0 +1,319 @@
+{
+  "id": "foreign-missile-test",
+  "title": "Kavara Conducts Long-Range Missile Test",
+  "flash_label": "NATIONAL SECURITY FLASH",
+  "category": "security",
+  "severity": 4,
+  "summary": "The Republic of Kavara flight-tested a two-stage missile over open water, extending its demonstrated range by roughly forty percent.",
+  "briefing_text": "At 0412 local time the Republic of Kavara launched a two-stage vehicle from its northern test range on a lofted trajectory into open water. Telemetry indicates a demonstrated range roughly forty percent beyond anything Kavara has previously flown, placing two allied capitals inside the envelope. Chairman Vekhtar's government announced the test publicly within the hour, which the intelligence community reads as a signalling exercise rather than a covert milestone. Allied governments have asked for an American position before their own markets open.",
+  "location": { "country": "rival_state_a" },
+  "start_conditions": [ { "min_turn": 2 } ],
+  "weight": 10,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "hidden.escalation_pressure", "op": ">=", "value": 35 } ], "multiply": 1.6 },
+    { "conditions": [ { "path": "hidden.rival_risk_tolerance", "op": ">=", "value": 55 } ], "multiply": 1.4 }
+  ],
+  "cooldown": 12,
+  "max_occurrences": 2,
+  "exclusive_with": ["major-cyberattack"],
+  "expiry": null,
+  "tags": ["missiles", "deterrence", "kavara", "proliferation"],
+  "cabinet_assessment": {
+    "state": "Kavara timed this for our first months, Mr. President, and every allied foreign ministry knows it. I can assemble a joint statement within thirty-six hours, but only if we decide what we are prepared to enforce.",
+    "defense": "The demonstrated range changes our basing math, sir. I would move the carrier group inside the week; anything slower reads as hesitation and Chairman Vekhtar is watching the clock, not the communiqué.",
+    "treasury": "Sanctions are available and they are cheap up front. What they are not is free: Kavara's partners will retaliate against exporters who did nothing wrong, and I will be explaining that to their senators.",
+    "nsa": "The question is not this test, it is the next one. Whatever we choose has to still be sustainable when they fly again in six weeks, because they will.",
+    "chief_of_staff": "The country will support a firm response for about six weeks, sir. After that they will ask what it cost and whether it worked, and we should have an answer ready before they ask.",
+    "intelligence": "Moderate confidence that this was a signalling test rather than an operational milestone. The gap in our reporting is intent, not capability, and I would not let anyone in this room close that gap with a guess."
+  },
+  "choices": [
+    {
+      "id": "sanctions",
+      "label": "Coordinated Sanctions",
+      "description": "Move targeted financial and export sanctions in concert with allied governments.",
+      "advisor_positions": {
+        "treasury": "I can have the designations ready in nine days, Mr. President. Expect counter-measures against American exporters inside a quarter; that is the price of the instrument.",
+        "state": "Coordinated is the operative word. Sanctions we impose alone are a statement; sanctions we impose together are a wall.",
+        "defense": "It is not a substitute for posture, sir. Kavara has absorbed sanctions before and kept flying."
+      },
+      "effects": {
+        "public.approval": 1,
+        "public.allied_confidence": 3,
+        "public.crisis_level": 3,
+        "countries.rival_state_a.relationship": -8,
+        "countries.rival_state_a.trade_dependency": -3,
+        "countries.european_allies.cooperation": 3
+      },
+      "hidden_effects": {
+        "hidden.credibility": 4,
+        "hidden.trade_retaliation_risk": 12,
+        "hidden.escalation_pressure": 4
+      },
+      "flags": { "sanctions_rival_a": true },
+      "counters": { "sanctions_used": 1 },
+      "delayed": [
+        {
+          "label": "Kavaran counter-measures against American exporters",
+          "delay_turns": 4,
+          "window_turns": 4,
+          "mode": "conditional",
+          "chance": 0.6,
+          "conditions": [ { "flag": "sanctions_rival_a" } ],
+          "effects": { "public.gdp_growth": -0.2, "countries.rival_state_a.relationship": -4 },
+          "hidden_effects": { "hidden.trade_retaliation_risk": 6 },
+          "trigger_event": "trade-retaliation",
+          "memory": {
+            "type": "economy",
+            "action": "absorbed Kavaran counter-measures after sanctions",
+            "target": "rival_state_a",
+            "result": "export sectors hit; escalation contained so far",
+            "tags": ["sanctions", "trade", "kavara"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Kavara Announces Counter-Measures Against American Exporters" }
+        },
+        {
+          "label": "Allied sanctions coalition holds",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.7,
+          "conditions": [],
+          "effects": { "public.allied_confidence": 2, "countries.european_allies.trust": 3 },
+          "hidden_effects": { "hidden.credibility": 2, "hidden.allied_reliability": 3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Allied Designations Match Washington's List Line for Line" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "imposed coordinated sanctions after the Kavaran missile test",
+        "target": "rival_state_a",
+        "result": "allies aligned; Kavara defiant; retaliation expected",
+        "tags": ["sanctions", "credibility", "diplomacy", "kavara"]
+      },
+      "outcome_text": "Six allied governments published matching designation lists within a day of the American announcement. Kavara's foreign ministry called the measures illegitimate and confirmed no change to its test schedule.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Announces Coordinated Sanctions on Kavara" },
+        { "outlet_id": "world-desk", "title": "Allied Capitals Move in Step With Washington on Kavara" }
+      ]
+    },
+    {
+      "id": "show-of-force",
+      "label": "Reposition the Carrier Group",
+      "description": "Move naval and air assets forward, visibly, within the week.",
+      "advisor_positions": {
+        "defense": "This is the option they will actually read, Mr. President. Give me an end state and I will give you a posture they cannot ignore.",
+        "nsa": "I support the move and I want the next rung decided today. If Kavara answers with a second launch, we should not be improvising on a Sunday.",
+        "treasury": "A sustained forward posture is roughly six billion a quarter, sir. I would like that in the supplemental rather than absorbed quietly."
+      },
+      "effects": {
+        "public.approval": 3,
+        "public.crisis_level": 8,
+        "public.deficit": 6,
+        "public.national_debt": 6,
+        "countries.rival_state_a.relationship": -6,
+        "countries.rival_state_a.military_tension": 12,
+        "countries.china.relationship": -3,
+        "countries.pacific_allies.cooperation": 4
+      },
+      "hidden_effects": {
+        "hidden.escalation_pressure": 12,
+        "hidden.war_fatigue": 2,
+        "hidden.credibility": 5,
+        "hidden.rival_risk_tolerance": 6
+      },
+      "flags": { "forward_posture": true },
+      "counters": { "force_deployments": 1 },
+      "delayed": [
+        {
+          "label": "Deterrence settles the theatre",
+          "delay_turns": 2,
+          "mode": "due",
+          "chance": 1.0,
+          "conditions": [],
+          "effects": { "public.crisis_level": -3, "countries.pacific_allies.trust": 3 },
+          "hidden_effects": { "hidden.escalation_pressure": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Regional Tempo Steadies as Task Force Takes Station" }
+        },
+        {
+          "label": "Kavara answers the deployment",
+          "delay_turns": 3,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "hidden.escalation_pressure", "op": ">=", "value": 30 } ],
+          "effects": { "countries.rival_state_a.military_tension": 6, "public.approval": -2, "public.crisis_level": 4 },
+          "hidden_effects": { "hidden.war_fatigue": 3, "hidden.escalation_pressure": 4 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "forward deployment met with Kavaran counter-deployment",
+            "target": "rival_state_a",
+            "result": "tension rose on both sides of the line",
+            "tags": ["escalation", "deterrence", "kavara"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Kavara Moves Coastal Batteries as Task Force Holds Station" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "repositioned a carrier group after the Kavaran missile test",
+        "target": "rival_state_a",
+        "result": "deterrence signalled; escalation risk accepted",
+        "tags": ["deterrence", "escalation", "posture", "kavara"]
+      },
+      "outcome_text": "The task force was on station in nine days and photographed from every angle. Pacific allied ministries welcomed it publicly; Kavara's state broadcaster ran the same photographs under a different headline.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Orders Carrier Group Forward After Kavaran Test" },
+        { "outlet_id": "capital-observer", "title": "Show of Force, or the First Rung of a Ladder?" }
+      ]
+    },
+    {
+      "id": "quiet-diplomacy",
+      "label": "Open a Back Channel",
+      "description": "Say little publicly and open an unacknowledged channel to Chairman Vekhtar's office.",
+      "advisor_positions": {
+        "state": "There is more flexibility in their position than their broadcasts suggest, Mr. President. A channel costs us nothing until it leaks, and I will keep it to four people.",
+        "intelligence": "I can support the channel, sir, but I will tell you plainly that Kavara has used past channels to buy time before a second test.",
+        "chief_of_staff": "Publicly this looks like nothing happened. That is survivable for about three weeks."
+      },
+      "effects": {
+        "public.approval": -3,
+        "public.allied_confidence": -3,
+        "public.crisis_level": -4,
+        "countries.rival_state_a.relationship": 6,
+        "countries.rival_state_a.trust": 4
+      },
+      "hidden_effects": {
+        "hidden.credibility": -4,
+        "hidden.escalation_pressure": -8,
+        "hidden.intelligence_confidence": 2,
+        "hidden.media_goodwill": -2
+      },
+      "flags": { "back_channel_kavara": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Back channel produces a test moratorium",
+          "delay_turns": 4,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.45,
+          "conditions": [ { "flag": "back_channel_kavara" } ],
+          "effects": { "countries.rival_state_a.trust": 6, "countries.rival_state_a.relationship": 4, "public.crisis_level": -3 },
+          "hidden_effects": { "hidden.escalation_pressure": -4, "hidden.credibility": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "back channel produced an unannounced Kavaran test pause",
+            "target": "rival_state_a",
+            "result": "quiet de-escalation, no public credit",
+            "tags": ["diplomacy", "back_channel", "kavara"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Kavaran Test Range Quiet for a Second Month" }
+        },
+        {
+          "label": "Existence of the channel leaks",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.35,
+          "conditions": [],
+          "effects": { "public.approval": -2, "public.allied_confidence": -2 },
+          "hidden_effects": { "hidden.media_goodwill": -4, "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Officials Confirm Unannounced Contacts With Kavara" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "opened an unacknowledged channel to Kavara",
+        "target": "rival_state_a",
+        "result": "tension eased; firmness questioned at home and abroad",
+        "tags": ["diplomacy", "back_channel", "restraint", "kavara"]
+      },
+      "outcome_text": "The public statement ran to four sentences and committed to nothing. Behind it, two officials met in a third country and agreed to meet again. Allied capitals noticed the silence before they noticed anything else.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Response to Kavaran Test Stays Measured" },
+        { "outlet_id": "capital-observer", "title": "Restraint or Retreat? The White House Says Little" }
+      ]
+    },
+    {
+      "id": "missile-defense",
+      "label": "Accelerate Missile Defense Deployment",
+      "description": "Fund and forward-deploy an accelerated regional missile defense architecture with Pacific partners.",
+      "advisor_positions": {
+        "defense": "We can field the first battery in eleven months if you sign the acceleration now, sir. The programme survives your term either way, which is its main virtue.",
+        "state": "Beijing will read this as directed at them regardless of what we say in the announcement. I would prepare for that conversation rather than be surprised by it.",
+        "treasury": "Thirty-five billion over the profile, Mr. President, and the outyears grow. This is the most expensive option in the room by a wide margin."
+      },
+      "effects": {
+        "public.approval": 2,
+        "public.deficit": 35,
+        "public.national_debt": 35,
+        "public.congress_support": -2,
+        "countries.pacific_allies.cooperation": 5,
+        "countries.china.relationship": -7,
+        "countries.china.military_tension": 6
+      },
+      "hidden_effects": {
+        "hidden.credibility": 3,
+        "hidden.escalation_pressure": 5,
+        "hidden.political_capital": -5,
+        "hidden.allied_reliability": 3
+      },
+      "flags": { "missile_defense_accel": true },
+      "counters": { "major_programmes": 1 },
+      "delayed": [
+        {
+          "label": "First battery declared operational",
+          "delay_turns": 6,
+          "mode": "due",
+          "chance": 0.8,
+          "conditions": [],
+          "effects": { "countries.pacific_allies.trust": 5, "public.allied_confidence": 3 },
+          "hidden_effects": { "hidden.credibility": 2, "hidden.allied_reliability": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "regional missile defense battery declared operational",
+            "target": "pacific_allies",
+            "result": "allied confidence strengthened at sustained cost",
+            "tags": ["missile_defense", "alliance"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "First Accelerated Battery Declared Operational Ahead of Schedule" }
+        },
+        {
+          "label": "Beijing responds to the architecture",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "countries.china.military_tension", "op": ">=", "value": 36 } ],
+          "effects": { "countries.china.trust": -6, "public.global_influence": -2, "countries.china.military_tension": 4 },
+          "hidden_effects": { "hidden.escalation_pressure": 3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "world-desk", "title": "Beijing Calls Regional Defense Architecture Destabilizing" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "accelerated regional missile defense deployment",
+        "target": "pacific_allies",
+        "result": "allies reassured; Beijing antagonized; cost committed",
+        "tags": ["missile_defense", "alliance", "china", "budget"]
+      },
+      "outcome_text": "The acceleration was announced jointly with two Pacific partners and priced honestly, which cost votes on the Hill. Beijing's foreign ministry responded within four hours and did not use diplomatic language.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Approves Accelerated Missile Defense Deployment" },
+        { "outlet_id": "world-desk", "title": "Regional Defense Push Redraws the Map for Every Capital" }
+      ]
+    }
+  ],
+  "followup_events": [
+    { "event_id": "trade-retaliation", "delay_turns": 6, "chance": 0.4, "conditions": [ { "flag": "sanctions_rival_a" } ] }
+  ]
+}
