@@ -1,0 +1,88 @@
+{
+  "id": "new-administration",
+  "title": "A New Administration",
+  "description": "You are sworn in on a cold January morning with a narrow mandate, a slowing economy, and an intelligence community that has been trying to get a meeting for six weeks. The transition is over. Every file on the Resolute desk is now yours.",
+  "start_date": "2001-01-20",
+  "initial_state": {
+    "public": {
+      "approval": 52.0,
+      "gdp_growth": 1.8,
+      "inflation": 2.9,
+      "unemployment": 5.1,
+      "deficit": 120.0,
+      "national_debt": 5700.0,
+      "global_influence": 60.0,
+      "allied_confidence": 58.0,
+      "domestic_stability": 62.0,
+      "congress_support": 49.0,
+      "crisis_level": 15.0
+    },
+    "hidden": {
+      "credibility": 55.0,
+      "war_fatigue": 5.0,
+      "institutional_trust": 55.0,
+      "political_capital": 60.0,
+      "rival_risk_tolerance": 45.0,
+      "allied_reliability": 60.0,
+      "intelligence_confidence": 55.0,
+      "recession_pressure": 30.0,
+      "escalation_pressure": 15.0,
+      "trade_retaliation_risk": 10.0,
+      "media_goodwill": 50.0
+    },
+    "countries": {
+      "china": {
+        "relationship": 10,
+        "trust": 35,
+        "trade_dependency": 55,
+        "military_tension": 30
+      },
+      "russia": {
+        "relationship": -5,
+        "trust": 30,
+        "trade_dependency": 15,
+        "military_tension": 35
+      },
+      "european_allies": {
+        "relationship": 60,
+        "trust": 65,
+        "trade_dependency": 60,
+        "military_tension": 0,
+        "cooperation": 65
+      },
+      "pacific_allies": {
+        "relationship": 55,
+        "trust": 60,
+        "trade_dependency": 50,
+        "military_tension": 0,
+        "cooperation": 60
+      },
+      "gulf_states": {
+        "relationship": 30,
+        "trust": 45,
+        "trade_dependency": 45,
+        "military_tension": 10
+      },
+      "rival_state_a": {
+        "relationship": -40,
+        "trust": 10,
+        "trade_dependency": 5,
+        "military_tension": 60
+      }
+    },
+    "flags": {}
+  },
+  "opening_event": "economic-slowdown",
+  "event_pool": [
+    "economic-slowdown",
+    "foreign-missile-test",
+    "energy-price-spike",
+    "major-cyberattack",
+    "congressional-budget-fight",
+    "allied-security-request",
+    "trade-retaliation",
+    "cyber-attribution-fallout"
+  ],
+  "advisor_set": "default",
+  "quiet_month_weight": 4
+}

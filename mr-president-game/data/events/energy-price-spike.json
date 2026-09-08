@@ -1,0 +1,305 @@
+{
+  "id": "energy-price-spike",
+  "title": "Crude Disruption Sends Fuel Prices Higher",
+  "flash_label": "ENERGY ALERT",
+  "category": "energy",
+  "severity": 3,
+  "summary": "An outage at two Gulf loading terminals has pulled roughly two million barrels a day out of the market with no announced restart date.",
+  "briefing_text": "Two Gulf loading terminals went offline within thirty hours of each other, removing close to two million barrels a day from seaborne supply. Benchmark crude is up nineteen percent on the week and retail fuel prices have begun to follow. Producer governments describe the outages as technical; our reporting is fragmentary and does not yet support a stronger characterization. Households will feel this within two weeks, which is faster than any policy we can pass.",
+  "location": { "country": "gulf_states" },
+  "start_conditions": [ { "min_turn": 2 } ],
+  "weight": 9,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "public.inflation", "op": ">=", "value": 3.5 } ], "multiply": 1.5 },
+    { "conditions": [ { "path": "countries.gulf_states.relationship", "op": "<=", "value": 20 } ], "multiply": 1.4 }
+  ],
+  "cooldown": 10,
+  "max_occurrences": 2,
+  "exclusive_with": [],
+  "expiry": null,
+  "tags": ["energy", "inflation", "gulf_states", "supply"],
+  "cabinet_assessment": {
+    "state": "The Gulf governments will take a call today if we make one, Mr. President. They would rather be asked than pressured, and the difference is worth about a week of supply.",
+    "defense": "Fuel is a war-fighting commodity, sir. A sustained shock at this level changes what I can afford to keep at sea by the third quarter.",
+    "treasury": "This is a tax on households that nobody voted for. Every relief instrument we have is either slow, inflationary, or both, and I would rather choose deliberately than reactively.",
+    "nsa": "Expect opportunism while prices stay high. Adversaries with hydrocarbons to sell get bolder when the market is doing their work for them.",
+    "chief_of_staff": "Pump prices move your approval faster than anything else in American politics, sir. Two weeks, not two quarters.",
+    "intelligence": "Our reporting on the cause is fragmentary and I would resist anyone in this building characterizing it as deliberate. Confidence is low and I do not expect it to improve quickly."
+  },
+  "choices": [
+    {
+      "id": "release-reserve",
+      "label": "Release Strategic Reserves",
+      "description": "Authorize a substantial drawdown from the strategic petroleum reserve to bridge the outage.",
+      "advisor_positions": {
+        "treasury": "It works on the price for roughly a quarter, Mr. President, and refilling it later will cost us more than the barrels are worth today.",
+        "defense": "The reserve is a war stock before it is a price instrument, sir. I would want a refill schedule signed the same day as the drawdown."
+      },
+      "effects": {
+        "public.approval": 3,
+        "public.inflation": -0.3,
+        "public.gdp_growth": 0.1,
+        "public.crisis_level": -3
+      },
+      "hidden_effects": {
+        "hidden.credibility": -2,
+        "hidden.political_capital": -3,
+        "hidden.media_goodwill": 2,
+        "hidden.recession_pressure": -2
+      },
+      "flags": { "reserve_drawdown": true },
+      "counters": { "reserve_releases": 1 },
+      "delayed": [
+        {
+          "label": "Reserve refill costs land in the budget",
+          "delay_turns": 5,
+          "mode": "due",
+          "chance": 1.0,
+          "conditions": [],
+          "effects": { "public.deficit": 12, "public.national_debt": 12 },
+          "hidden_effects": { "hidden.credibility": -1 },
+          "trigger_event": null,
+          "memory": {
+            "type": "economy",
+            "action": "refilled the strategic reserve at higher prices",
+            "target": "domestic",
+            "result": "budget cost realized months after the relief",
+            "tags": ["energy", "budget", "reserve"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Reserve Refill Priced In as Budget Line Widens" }
+        },
+        {
+          "label": "Relief fails to hold at the pump",
+          "delay_turns": 3,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "public.inflation", "op": ">=", "value": 3.5 } ],
+          "effects": { "public.approval": -2 },
+          "hidden_effects": { "hidden.media_goodwill": -3, "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Prices Climb Again as the Reserve Release Runs Out" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "ordered a strategic reserve drawdown during the price spike",
+        "target": "domestic",
+        "result": "immediate relief bought at a later fiscal cost",
+        "tags": ["energy", "reserve", "inflation"]
+      },
+      "outcome_text": "The drawdown was announced before markets opened and took roughly nine cents off the national average within three weeks. The Department of Energy has not yet published a refill schedule.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Orders Strategic Reserve Release as Fuel Costs Climb" },
+        { "outlet_id": "american-ledger", "title": "Crude Retreats on Coordinated Reserve Drawdown" }
+      ]
+    },
+    {
+      "id": "producer-diplomacy",
+      "label": "Press Producers for Output",
+      "description": "Send the Secretary of State to negotiate an emergency production increase with Gulf governments.",
+      "advisor_positions": {
+        "state": "They will move, Mr. President, and they will want something in the security column for it. I would rather know the price before we board the aircraft.",
+        "chief_of_staff": "Diplomacy is slow and the pump is fast. If this takes more than three weeks we own the price and the trip."
+      },
+      "effects": {
+        "public.approval": 1,
+        "public.global_influence": 2,
+        "public.allied_confidence": -1,
+        "countries.gulf_states.relationship": 4,
+        "countries.gulf_states.trade_dependency": 4
+      },
+      "hidden_effects": {
+        "hidden.credibility": -1,
+        "hidden.allied_reliability": -2,
+        "hidden.political_capital": -2
+      },
+      "flags": { "gulf_output_deal": true },
+      "counters": { "energy_deals": 1 },
+      "delayed": [
+        {
+          "label": "Producer output increase reaches the market",
+          "delay_turns": 3,
+          "window_turns": 4,
+          "mode": "conditional",
+          "chance": 0.6,
+          "conditions": [ { "flag": "gulf_output_deal" } ],
+          "effects": { "public.inflation": -0.3, "public.gdp_growth": 0.2, "countries.gulf_states.trust": 4 },
+          "hidden_effects": { "hidden.recession_pressure": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "foreign_policy",
+            "action": "negotiated an emergency production increase",
+            "target": "gulf_states",
+            "result": "supply eased; obligations incurred",
+            "tags": ["energy", "diplomacy", "gulf_states"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Producers Confirm Emergency Output Increase" }
+        },
+        {
+          "label": "Terms of the arrangement surface",
+          "delay_turns": 6,
+          "mode": "due",
+          "chance": 0.4,
+          "conditions": [],
+          "effects": { "countries.gulf_states.relationship": -3, "public.approval": -1, "public.allied_confidence": -2 },
+          "hidden_effects": { "hidden.media_goodwill": -3, "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "What Washington Promised for the Barrels" }
+        }
+      ],
+      "memory": {
+        "type": "foreign_policy",
+        "action": "pressed Gulf producers for an emergency output increase",
+        "target": "gulf_states",
+        "result": "supply relief traded against security commitments",
+        "tags": ["energy", "diplomacy", "gulf_states"]
+      },
+      "outcome_text": "The Secretary of State returned with a communiqué, a handshake, and an understanding that was not written down. Output schedules were revised upward the following week.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Washington Opens Emergency Energy Talks With Gulf Governments" },
+        { "outlet_id": "world-desk", "title": "Energy Diplomacy Enters a Harder Phase" }
+      ]
+    },
+    {
+      "id": "domestic-production",
+      "label": "Open Federal Leases",
+      "description": "Accelerate permitting and open additional federal acreage to domestic production.",
+      "advisor_positions": {
+        "treasury": "The supply effect is real but it arrives in eighteen months, Mr. President, not eighteen days. Do not sell it as relief for this winter.",
+        "chief_of_staff": "This is a jobs story in four states and a fight in a dozen others. Frame it that way or someone else will frame it for us."
+      },
+      "effects": {
+        "public.gdp_growth": 0.3,
+        "public.unemployment": -0.1,
+        "public.approval": -2,
+        "public.domestic_stability": -3,
+        "public.congress_support": 2
+      },
+      "hidden_effects": {
+        "hidden.institutional_trust": -3,
+        "hidden.media_goodwill": -4,
+        "hidden.recession_pressure": -3
+      },
+      "flags": { "expanded_leases": true },
+      "counters": { "energy_deals": 1 },
+      "delayed": [
+        {
+          "label": "New domestic supply comes online",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.75,
+          "conditions": [],
+          "effects": { "public.inflation": -0.2, "public.gdp_growth": 0.1 },
+          "hidden_effects": { "hidden.recession_pressure": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Domestic Output Climbs as New Acreage Comes Online" }
+        },
+        {
+          "label": "Sustained opposition to the lease expansion",
+          "delay_turns": 2,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "expanded_leases" } ],
+          "effects": { "public.approval": -2, "public.domestic_stability": -3 },
+          "hidden_effects": { "hidden.media_goodwill": -3, "hidden.institutional_trust": -2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "domestic",
+            "action": "faced sustained opposition to the federal lease expansion",
+            "target": "domestic",
+            "result": "litigation and protest slowed implementation",
+            "tags": ["energy", "domestic", "litigation"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "Lease Expansion Meets a Wall of Litigation" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "opened additional federal acreage to production",
+        "target": "domestic",
+        "result": "long-run supply gained at immediate political cost",
+        "tags": ["energy", "production", "domestic"]
+      },
+      "outcome_text": "The Interior order was signed the same afternoon and challenged in court by the end of the week. Producers welcomed it; the first barrel is a year and a half away.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Administration Opens Federal Acreage to New Production" },
+        { "outlet_id": "capital-observer", "title": "A Supply Answer That Arrives Eighteen Months Too Late" }
+      ]
+    },
+    {
+      "id": "consumer-relief",
+      "label": "Direct Consumer Fuel Rebate",
+      "description": "Push a temporary, means-tested fuel rebate delivered directly to households.",
+      "advisor_positions": {
+        "treasury": "It is the most visible instrument and the least efficient one, Mr. President. It supports demand for the very commodity that is scarce.",
+        "chief_of_staff": "People will feel this within a month, which is the only thing about it I like, and it is enough for me to recommend it."
+      },
+      "effects": {
+        "public.approval": 5,
+        "public.deficit": 30,
+        "public.national_debt": 30,
+        "public.inflation": 0.3,
+        "public.congress_support": -3
+      },
+      "hidden_effects": {
+        "hidden.political_capital": -6,
+        "hidden.recession_pressure": -2,
+        "hidden.credibility": -3,
+        "hidden.media_goodwill": 2
+      },
+      "flags": { "fuel_rebate": true },
+      "counters": { "relief_programmes": 1 },
+      "delayed": [
+        {
+          "label": "Rebate supports demand and prices",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 1.0,
+          "conditions": [],
+          "effects": { "public.inflation": 0.2, "public.gdp_growth": 0.1 },
+          "hidden_effects": { "hidden.recession_pressure": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Fuel Demand Holds Firm as Rebates Reach Households" }
+        },
+        {
+          "label": "Deficit fight over the rebate programme",
+          "delay_turns": 4,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.55,
+          "conditions": [ { "path": "public.deficit", "op": ">=", "value": 160 } ],
+          "effects": { "public.congress_support": -4, "public.approval": -1 },
+          "hidden_effects": { "hidden.political_capital": -4 },
+          "trigger_event": null,
+          "memory": {
+            "type": "congress",
+            "action": "defended the fuel rebate against a deficit revolt",
+            "target": "congress",
+            "result": "programme survived; capital spent",
+            "tags": ["energy", "deficit", "congress"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "Rebate Programme Becomes the Deficit Fight of the Session" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "delivered a temporary household fuel rebate",
+        "target": "domestic",
+        "result": "immediate relief; inflation and deficit both worsened",
+        "tags": ["energy", "relief", "deficit"]
+      },
+      "outcome_text": "The rebate cleared on a party-line vote and reached the first households in five weeks. Treasury's own memorandum, which leaked, described it as the least efficient option considered.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Signs Temporary Household Fuel Rebate" },
+        { "outlet_id": "capital-observer", "title": "Consumers Bear the Cost of a Rebate That Feeds the Price" }
+      ]
+    }
+  ],
+  "followup_events": []
+}

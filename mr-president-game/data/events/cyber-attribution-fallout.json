@@ -1,0 +1,316 @@
+{
+  "id": "cyber-attribution-fallout",
+  "title": "Attribution Disputed as Evidence Is Challenged",
+  "flash_label": "INTELLIGENCE CONTROVERSY",
+  "category": "intelligence",
+  "severity": 5,
+  "summary": "Two allied services have declined to endorse the American attribution, and a technical account contradicting it is now circulating publicly.",
+  "briefing_text": "Two allied intelligence services have privately declined to endorse the attribution and one has begun briefing its own legislature to that effect. A detailed technical account published this morning argues that the indicators the assessment relies on are consistent with a second actor, and the argument is not obviously wrong. The Director assesses the underlying judgement remains sound at moderate confidence, and that defending it publicly would require exposing collection that took eleven years to build. The question in front of you is no longer who did it, but what the word of the United States is worth when it says so.",
+  "location": { "region": "domestic" },
+  "start_conditions": [ { "flag": "public_attribution" } ],
+  "weight": 7,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "hidden.intelligence_confidence", "op": "<=", "value": 45 } ], "multiply": 1.8 },
+    { "conditions": [ { "path": "hidden.media_goodwill", "op": "<=", "value": 40 } ], "multiply": 1.4 }
+  ],
+  "cooldown": 16,
+  "max_occurrences": 1,
+  "exclusive_with": ["major-cyberattack"],
+  "expiry": null,
+  "tags": ["intelligence", "attribution", "credibility", "cyber"],
+  "cabinet_assessment": {
+    "state": "Two allied foreign ministries have asked me directly whether we overstated it, Mr. President. What I tell them this week will be quoted back to me for the rest of your term.",
+    "defense": "I moved forces on that assessment, sir. If the assessment is now in question I need to know that before I am asked in open testimony, not after.",
+    "treasury": "The designations we issued rest on the same finding. If the finding is publicly discredited, the legal exposure on those designations is real and litigated within a quarter.",
+    "nsa": "The adversary's objective now is the dispute itself, not the denial. Every week we spend arguing about evidence is a week they are not spending on anything else.",
+    "chief_of_staff": "The story is no longer the intrusion, sir. It is whether this White House says things it cannot back up, and that story attaches to everything else you do this year.",
+    "intelligence": "The judgement is sound at moderate confidence and I will not upgrade it to please anyone. Defending it in public costs a collection capability we cannot rebuild, and I want that trade made by you, not inferred from me."
+  },
+  "choices": [
+    {
+      "id": "declassify-evidence",
+      "label": "Declassify the Underlying Evidence",
+      "description": "Release a sanitized but substantive evidentiary package, accepting the collection loss.",
+      "advisor_positions": {
+        "intelligence": "You would be trading eleven years of access for one news cycle of vindication, Mr. President. I will execute it and I will not pretend the cost is recoverable.",
+        "chief_of_staff": "It ends the argument, sir. Nothing else on this list ends the argument.",
+        "state": "It ends the argument with our allies too, which is worth more than the domestic cycle. They need something they can show their own parliaments."
+      },
+      "effects": {
+        "public.approval": 4,
+        "public.allied_confidence": 4,
+        "public.global_influence": 2,
+        "public.crisis_level": 2,
+        "countries.rival_state_a.relationship": -5
+      },
+      "hidden_effects": {
+        "hidden.credibility": 6,
+        "hidden.intelligence_confidence": -10,
+        "hidden.institutional_trust": 2,
+        "hidden.escalation_pressure": 4
+      },
+      "flags": { "evidence_declassified": true },
+      "counters": { "declassifications": 1 },
+      "delayed": [
+        {
+          "label": "Allied services accept the evidentiary package",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.8,
+          "conditions": [],
+          "effects": { "countries.european_allies.trust": 4, "public.allied_confidence": 2 },
+          "hidden_effects": { "hidden.intelligence_confidence": -4, "hidden.credibility": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "declassified package satisfied allied services",
+            "target": "european_allies",
+            "result": "attribution accepted; collection lost",
+            "tags": ["attribution", "declassification", "alliance"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Allied Services Accept Washington's Evidentiary Package" }
+        },
+        {
+          "label": "Collection sources go dark",
+          "delay_turns": 4,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "evidence_declassified" } ],
+          "effects": { "public.global_influence": -2, "public.crisis_level": 2 },
+          "hidden_effects": { "hidden.intelligence_confidence": -5, "hidden.allied_reliability": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "collection access lost after declassification",
+            "target": "rival_state_a",
+            "result": "warning capability degraded for years",
+            "tags": ["intelligence", "collection", "cost"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Analysts Say a Long-Running Access Went Quiet This Month" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "declassified the evidence behind the attribution",
+        "target": "rival_state_a",
+        "result": "credibility restored at a permanent collection cost",
+        "tags": ["attribution", "declassification", "credibility"]
+      },
+      "outcome_text": "The package ran to forty-one pages and was, by the assessment of every technical reader, convincing. Within a month, three of the accesses it described had stopped producing.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Releases Evidence Behind Kavara Attribution" },
+        { "outlet_id": "capital-observer", "title": "Vindication, and What It Cost to Buy" }
+      ]
+    },
+    {
+      "id": "allied-review",
+      "label": "Submit the Findings to Allied Review",
+      "description": "Hand the full assessment to allied services under existing agreements and accept their published verdict.",
+      "advisor_positions": {
+        "state": "This is the option that repairs the alliance rather than the news cycle, Mr. President. It also means we do not control the verdict.",
+        "intelligence": "Sharing at this depth is survivable, sir. Accepting a verdict we have not seen is a different kind of decision and you should make it deliberately."
+      },
+      "effects": {
+        "public.approval": -2,
+        "public.allied_confidence": 5,
+        "public.global_influence": 1,
+        "countries.european_allies.cooperation": 5,
+        "countries.european_allies.trust": 4
+      },
+      "hidden_effects": {
+        "hidden.credibility": -3,
+        "hidden.allied_reliability": 5,
+        "hidden.intelligence_confidence": -2,
+        "hidden.political_capital": -3
+      },
+      "flags": { "allied_evidence_review": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Allied review endorses the assessment",
+          "delay_turns": 4,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.6,
+          "conditions": [ { "flag": "allied_evidence_review" } ],
+          "effects": { "public.allied_confidence": 3, "countries.pacific_allies.trust": 3, "public.approval": 2 },
+          "hidden_effects": { "hidden.credibility": 4, "hidden.intelligence_confidence": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "allied review endorsed the American assessment",
+            "target": "european_allies",
+            "result": "attribution validated through partners",
+            "tags": ["attribution", "alliance", "verification"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Joint Review Endorses the American Assessment" }
+        },
+        {
+          "label": "Waiting for the verdict costs at home",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 0.4,
+          "conditions": [],
+          "effects": { "public.approval": -2, "public.congress_support": -2 },
+          "hidden_effects": { "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Outsourcing the Answer: A White House Waits" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "submitted the attribution to allied review",
+        "target": "european_allies",
+        "result": "alliance repaired; the verdict placed in other hands",
+        "tags": ["attribution", "alliance", "verification"]
+      },
+      "outcome_text": "The full assessment went to four allied services under existing agreements, with a written commitment to publish their conclusion whatever it was. The Director signed the transmittal without comment.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Attribution Assessment Submitted for Allied Review" },
+        { "outlet_id": "world-desk", "title": "Allied Services Compare Notes on the Grid Intrusion" }
+      ]
+    },
+    {
+      "id": "hold-the-line",
+      "label": "Stand by the Assessment Without Disclosure",
+      "description": "Restate the attribution, refuse to disclose sources, and let the criticism run its course.",
+      "advisor_positions": {
+        "intelligence": "It protects the capability, Mr. President, and it leaves you defending a judgement with nothing in your hand. That is a real position; it is not a comfortable one.",
+        "chief_of_staff": "Six weeks of being called unreliable, sir, and no way to end it early. I can manage it. I cannot make it stop."
+      },
+      "effects": {
+        "public.approval": -3,
+        "public.allied_confidence": -4,
+        "public.crisis_level": 3,
+        "countries.european_allies.trust": -3
+      },
+      "hidden_effects": {
+        "hidden.credibility": -5,
+        "hidden.institutional_trust": -4,
+        "hidden.intelligence_confidence": 4,
+        "hidden.media_goodwill": -6,
+        "hidden.escalation_pressure": 3
+      },
+      "flags": { "attribution_held": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Sustained criticism erodes the position",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.55,
+          "conditions": [ { "path": "hidden.media_goodwill", "op": "<=", "value": 40 } ],
+          "effects": { "public.approval": -3, "public.domestic_stability": -3 },
+          "hidden_effects": { "hidden.institutional_trust": -4, "hidden.credibility": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "domestic",
+            "action": "absorbed sustained criticism over the undisclosed evidence",
+            "target": "domestic",
+            "result": "public standing eroded; sources protected",
+            "tags": ["attribution", "credibility", "media"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "Trust Us: A White House Runs Out of Answers" }
+        },
+        {
+          "label": "Collection continues to produce",
+          "delay_turns": 5,
+          "mode": "due",
+          "chance": 0.6,
+          "conditions": [],
+          "effects": { "countries.rival_state_a.military_tension": -3, "public.crisis_level": -2 },
+          "hidden_effects": { "hidden.intelligence_confidence": 4 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Intelligence Community Closes Ranks After the Dispute" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "stood by the attribution without disclosing evidence",
+        "target": "rival_state_a",
+        "result": "sources protected; public and allied trust damaged",
+        "tags": ["attribution", "sources", "credibility"]
+      },
+      "outcome_text": "The White House restated the attribution in a single paragraph and took no questions. The technical rebuttal was reprinted in nine countries; the collection kept producing.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Stands by Kavara Attribution, Declines to Detail Evidence" },
+        { "outlet_id": "world-desk", "title": "Foreign Governments Dispute the American Findings" }
+      ]
+    },
+    {
+      "id": "independent-inquiry",
+      "label": "Order an Independent Inquiry",
+      "description": "Commission an independent review of how the attribution was reached and commit to publishing it.",
+      "advisor_positions": {
+        "chief_of_staff": "It takes the story out of the daily cycle and puts it on a shelf for four months, Mr. President. It also guarantees the story returns.",
+        "intelligence": "An honest inquiry will find that we attributed at moderate confidence and said so imprecisely, sir. I can live with that finding. I would want you to have decided you can too.",
+        "state": "Our partners will read an inquiry as candour, which is not nothing. They will also read it as doubt."
+      },
+      "effects": {
+        "public.approval": 1,
+        "public.congress_support": 4,
+        "public.domestic_stability": 2,
+        "public.global_influence": -2,
+        "public.allied_confidence": -2
+      },
+      "hidden_effects": {
+        "hidden.institutional_trust": 7,
+        "hidden.credibility": -4,
+        "hidden.intelligence_confidence": -6,
+        "hidden.political_capital": -5
+      },
+      "flags": { "attribution_inquiry": true },
+      "counters": { "inquiries_ordered": 1 },
+      "delayed": [
+        {
+          "label": "Inquiry strengthens the process",
+          "delay_turns": 6,
+          "mode": "due",
+          "chance": 0.7,
+          "conditions": [],
+          "effects": { "public.congress_support": 2, "public.domestic_stability": 2 },
+          "hidden_effects": { "hidden.institutional_trust": 3, "hidden.intelligence_confidence": 2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "domestic",
+            "action": "independent inquiry reformed the attribution process",
+            "target": "domestic",
+            "result": "procedures tightened; confidence slowly rebuilt",
+            "tags": ["inquiry", "institutions", "attribution"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Inquiry Recommends Tighter Attribution Standards" }
+        },
+        {
+          "label": "Findings reopen the controversy",
+          "delay_turns": 3,
+          "window_turns": 8,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "attribution_inquiry" } ],
+          "effects": { "public.approval": -2, "public.crisis_level": 2, "public.allied_confidence": -2 },
+          "hidden_effects": { "hidden.credibility": -3, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "The Inquiry Findings the White House Hoped Would Stay Buried" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "ordered an independent inquiry into the attribution",
+        "target": "domestic",
+        "result": "institutional trust bought at the cost of certainty",
+        "tags": ["inquiry", "attribution", "institutions"]
+      },
+      "outcome_text": "The inquiry was announced with a four-month deadline, a published mandate, and a chair both parties had already agreed to. The intelligence committees welcomed it; the Director said nothing at all.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Orders Independent Review of Attribution Process" },
+        { "outlet_id": "american-ledger", "title": "Oversight Committees Briefed as Inquiry Begins" }
+      ]
+    }
+  ],
+  "followup_events": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "project_name": "mr-president",
+  "current_goal": "Build the 0.1.0 playable skeleton of the Mr. President WordPress plugin (vertical slice)",
+  "current_phase": "0.1.0 skeleton built \u2014 awaiting maintainer review",
+  "active_agent": null,
+  "last_agent": "claude-fable-5.1",
+  "last_updated": "2026-09-08T15:20:00Z",
+  "status": "in_review",
+  "blocked": false,
+  "blocker_reason": null,
+  "active_event_id": null,
+  "last_event_processed": null,
+  "pending_event_count": 0,
+  "review_response_required": false,
+  "ci_status": "passing_locally",
+  "execution_active": false,
+  "execution_stop_reason": null,
+  "next_recommended_action": "maintainer reviews the branch; then pick the first 'Later' item in todos.md (guest save store or real AI provider)"
+}

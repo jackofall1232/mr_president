@@ -1,0 +1,312 @@
+{
+  "id": "major-cyberattack",
+  "title": "Intrusion Disables Regional Grid Operators",
+  "flash_label": "CRITICAL CYBER INCIDENT",
+  "category": "cyber",
+  "severity": 4,
+  "summary": "A coordinated intrusion took control systems offline at four regional grid operators, forcing rolling load shedding across two states.",
+  "briefing_text": "Beginning at 0230 Eastern, four regional transmission operators lost supervisory control of substation automation and moved to manual operation. Roughly 1.4 million customers experienced rolling outages before load was restored eleven hours later. Forensics indicate a single actor with months of pre-positioned access and a deliberate choice not to cause permanent damage. The intelligence community assesses with moderate confidence that this was a demonstration, and that the actor is still resident on networks we have not yet identified.",
+  "location": { "region": "domestic" },
+  "start_conditions": [ { "min_turn": 3 } ],
+  "weight": 8,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "hidden.rival_risk_tolerance", "op": ">=", "value": 55 } ], "multiply": 1.5 }
+  ],
+  "cooldown": 14,
+  "max_occurrences": 1,
+  "exclusive_with": ["foreign-missile-test", "cyber-attribution-fallout"],
+  "expiry": null,
+  "tags": ["cyber", "infrastructure", "attribution", "grid"],
+  "cabinet_assessment": {
+    "state": "Whatever we say publicly becomes the position of every ally who shares our intelligence, Mr. President. Naming a state is a diplomatic act with a longer tail than the outage had.",
+    "defense": "Our networks are contested terrain and I would like them resourced as such, sir. Separately: if you want an option in kind, I can bring you one, and you should know what it invites.",
+    "treasury": "Financial sector exposure to this actor is the systemic question, not the grid. I would like the Federal Reserve read in before anything is announced.",
+    "nsa": "Assume they are reading our deliberations. Any response plan we build has to survive being known to the people it targets.",
+    "chief_of_staff": "The country will forgive the outage. They will not forgive learning later that we knew who did it and said nothing for a month.",
+    "intelligence": "Moderate confidence on the actor, sir, and moderate is an honest word here. High confidence attribution is three to five weeks away, and I will not be pressured into arriving early."
+  },
+  "choices": [
+    {
+      "id": "public-attribution",
+      "label": "Name the Perpetrator Publicly",
+      "description": "Publicly attribute the intrusion to the Republic of Kavara and coordinate allied statements.",
+      "advisor_positions": {
+        "intelligence": "You would be attributing at moderate confidence, Mr. President. I can support the judgement; I cannot support calling it certainty, and the difference will be litigated in public.",
+        "chief_of_staff": "Naming them is the only version of this where we control the story. Silence gets filled by someone else's reporting in ten days.",
+        "state": "Once we say the name, six allied services are committed to the same account. I would rather they were consulted than informed."
+      },
+      "effects": {
+        "public.approval": 3,
+        "public.crisis_level": 5,
+        "public.allied_confidence": 2,
+        "countries.rival_state_a.relationship": -10,
+        "countries.rival_state_a.military_tension": 6
+      },
+      "hidden_effects": {
+        "hidden.credibility": 5,
+        "hidden.intelligence_confidence": -4,
+        "hidden.escalation_pressure": 8,
+        "hidden.media_goodwill": 2
+      },
+      "flags": { "public_attribution": true },
+      "counters": { "attributions_made": 1 },
+      "delayed": [
+        {
+          "label": "Allied governments echo the attribution",
+          "delay_turns": 4,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "public_attribution" } ],
+          "effects": { "public.allied_confidence": 3, "countries.european_allies.cooperation": 3 },
+          "hidden_effects": { "hidden.credibility": 2, "hidden.allied_reliability": 3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "allied governments endorsed the attribution",
+            "target": "european_allies",
+            "result": "coalition position held",
+            "tags": ["cyber", "attribution", "alliance"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Allied Capitals Endorse Washington's Attribution" }
+        },
+        {
+          "label": "Kavaran denial campaign",
+          "delay_turns": 2,
+          "mode": "due",
+          "chance": 0.8,
+          "conditions": [],
+          "effects": { "countries.rival_state_a.relationship": -3, "public.crisis_level": 2 },
+          "hidden_effects": { "hidden.media_goodwill": -2, "hidden.escalation_pressure": 2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "world-desk", "title": "Kavara Denies Involvement and Demands Evidence" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "publicly attributed the grid intrusion to Kavara",
+        "target": "rival_state_a",
+        "result": "credibility asserted on contested evidence",
+        "tags": ["cyber", "attribution", "kavara"]
+      },
+      "outcome_text": "The attribution statement named the Republic of Kavara and described the evidence in general terms. Kavara's foreign ministry demanded proof within the hour, and two allied services asked, privately, exactly how firm the judgement was.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Attributes Grid Intrusion to Kavara" },
+        { "outlet_id": "capital-observer", "title": "Moderate Confidence, Maximum Certainty: The Attribution Gap" }
+      ]
+    },
+    {
+      "id": "harden-defenses",
+      "label": "Emergency Hardening Directive",
+      "description": "Issue a binding federal directive requiring rapid security upgrades across critical infrastructure operators.",
+      "advisor_positions": {
+        "treasury": "The compliance cost falls on operators and reaches ratepayers within two billing cycles, Mr. President. It is defensible; it is not free.",
+        "nsa": "This is the option that actually reduces the next intrusion's odds, sir. It is also the one nobody will thank you for."
+      },
+      "effects": {
+        "public.approval": 1,
+        "public.domestic_stability": 2,
+        "public.deficit": 18,
+        "public.national_debt": 18,
+        "public.gdp_growth": -0.1,
+        "public.congress_support": -2
+      },
+      "hidden_effects": {
+        "hidden.institutional_trust": 4,
+        "hidden.political_capital": -4,
+        "hidden.intelligence_confidence": 2,
+        "hidden.media_goodwill": -1
+      },
+      "flags": { "cyber_hardening": true },
+      "counters": { "directives_issued": 1 },
+      "delayed": [
+        {
+          "label": "Hardening measures reach operators",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.85,
+          "conditions": [],
+          "effects": { "public.domestic_stability": 2, "public.crisis_level": -3 },
+          "hidden_effects": { "hidden.institutional_trust": 2, "hidden.intelligence_confidence": 2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "technology",
+            "action": "critical infrastructure hardening directive implemented",
+            "target": "domestic",
+            "result": "resilience improved at industry cost",
+            "tags": ["cyber", "infrastructure", "regulation"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Operators Complete First Phase of Federal Hardening Standards" }
+        },
+        {
+          "label": "Industry pushes back on compliance costs",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "flag": "cyber_hardening" } ],
+          "effects": { "public.congress_support": -3, "public.gdp_growth": -0.1 },
+          "hidden_effects": { "hidden.political_capital": -3, "hidden.media_goodwill": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Utilities Say the Directive Costs More Than the Outage Did" }
+        }
+      ],
+      "memory": {
+        "type": "technology",
+        "action": "issued an emergency infrastructure hardening directive",
+        "target": "domestic",
+        "result": "defensive posture improved; industry alienated",
+        "tags": ["cyber", "regulation", "infrastructure"]
+      },
+      "outcome_text": "The directive ran to ninety pages and gave operators one hundred and twenty days. Three trade associations announced their opposition before the ink was dry; two of them began complying anyway.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Orders Emergency Infrastructure Security Directive" },
+        { "outlet_id": "american-ledger", "title": "Insurers Reassess Grid Risk as Federal Standards Tighten" }
+      ]
+    },
+    {
+      "id": "export-controls",
+      "label": "Impose Technology Export Controls",
+      "description": "Restrict export of advanced computing and network technology to Kavara and states that resell to it.",
+      "advisor_positions": {
+        "treasury": "Controls only work if enforcement is credible, Mr. President. Announcing more than we can police is worse than announcing nothing, and retaliation is close to certain.",
+        "state": "Beijing will be caught by the re-export provisions whether or not we intend it. That conversation should happen before the rule publishes, not after."
+      },
+      "effects": {
+        "public.approval": 2,
+        "public.global_influence": 2,
+        "public.gdp_growth": -0.2,
+        "countries.rival_state_a.relationship": -8,
+        "countries.china.relationship": -6,
+        "countries.china.trade_dependency": -4
+      },
+      "hidden_effects": {
+        "hidden.trade_retaliation_risk": 15,
+        "hidden.credibility": 3,
+        "hidden.political_capital": -3
+      },
+      "flags": { "export_controls": true },
+      "counters": { "export_control_actions": 1 },
+      "delayed": [
+        {
+          "label": "Retaliation against controlled sectors",
+          "delay_turns": 3,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.65,
+          "conditions": [ { "flag": "export_controls" } ],
+          "effects": { "public.gdp_growth": -0.1, "countries.china.trade_dependency": -3 },
+          "hidden_effects": { "hidden.trade_retaliation_risk": 5 },
+          "trigger_event": "trade-retaliation",
+          "memory": {
+            "type": "economy",
+            "action": "export controls drew commercial retaliation",
+            "target": "china",
+            "result": "American exporters targeted in response",
+            "tags": ["export_controls", "trade", "retaliation"]
+          },
+          "headline": { "outlet_id": "world-desk", "title": "Export Rules Redrawn as Partners Prepare Countermeasures" }
+        },
+        {
+          "label": "Allied divergence on the control list",
+          "delay_turns": 5,
+          "mode": "due",
+          "chance": 0.5,
+          "conditions": [],
+          "effects": { "countries.european_allies.cooperation": -3, "public.allied_confidence": -2 },
+          "hidden_effects": { "hidden.allied_reliability": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Allies Decline to Match the American Control List" }
+        }
+      ],
+      "memory": {
+        "type": "technology",
+        "action": "imposed technology export controls after the grid intrusion",
+        "target": "rival_state_a",
+        "result": "capability denied; trade retaliation invited",
+        "tags": ["export_controls", "cyber", "trade"]
+      },
+      "outcome_text": "The interim final rule published in eleven days and captured more re-export routes than the briefing had suggested. Two trading partners summoned the ambassador; one of them was an ally.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Administration Imposes New Technology Export Controls" },
+        { "outlet_id": "world-desk", "title": "Standards Fight Goes Global After the Grid Intrusion" }
+      ]
+    },
+    {
+      "id": "covert-response",
+      "label": "Authorize a Proportional Covert Response",
+      "description": "Approve a covert action program to impose costs on the responsible networks without public acknowledgement.",
+      "advisor_positions": {
+        "defense": "I can bring you a proportionate option inside a week, Mr. President. You should decide now what we do when they answer, because they will answer.",
+        "intelligence": "A finding of this kind is briefed to eight people on the Hill within forty-eight hours, sir. I would not build a plan that depends on it staying quiet forever.",
+        "nsa": "Proportional is doing a great deal of work in that sentence. I would want the ceiling written down before you sign."
+      },
+      "effects": {
+        "public.approval": -1,
+        "public.crisis_level": 4,
+        "countries.rival_state_a.military_tension": 8,
+        "countries.rival_state_a.trust": -5
+      },
+      "hidden_effects": {
+        "hidden.escalation_pressure": 10,
+        "hidden.credibility": 2,
+        "hidden.intelligence_confidence": -3,
+        "hidden.institutional_trust": -2,
+        "hidden.rival_risk_tolerance": 5
+      },
+      "flags": { "covert_response_authorized": true },
+      "counters": { "covert_actions": 1 },
+      "delayed": [
+        {
+          "label": "Covert program exposed",
+          "delay_turns": 3,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.4,
+          "conditions": [ { "flag": "covert_response_authorized" } ],
+          "effects": { "public.approval": -4, "public.allied_confidence": -3, "public.crisis_level": 5 },
+          "hidden_effects": { "hidden.institutional_trust": -5, "hidden.media_goodwill": -6, "hidden.credibility": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "security",
+            "action": "covert cyber response program was exposed",
+            "target": "rival_state_a",
+            "result": "domestic and allied fallout followed disclosure",
+            "tags": ["covert", "cyber", "disclosure"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "Officials Describe a Covert Program the White House Will Not Confirm" }
+        },
+        {
+          "label": "Adversary activity subsides quietly",
+          "delay_turns": 5,
+          "mode": "due",
+          "chance": 0.6,
+          "conditions": [],
+          "effects": { "countries.rival_state_a.military_tension": -4, "public.crisis_level": -3 },
+          "hidden_effects": { "hidden.escalation_pressure": -3, "hidden.intelligence_confidence": 3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Intrusion Attempts Against Utilities Fall Sharply" }
+        }
+      ],
+      "memory": {
+        "type": "security",
+        "action": "authorized a proportional covert cyber response",
+        "target": "rival_state_a",
+        "result": "costs imposed quietly; exposure risk accepted",
+        "tags": ["covert", "cyber", "escalation"]
+      },
+      "outcome_text": "The finding was signed, briefed to the congressional leadership, and never mentioned in public. Intrusion attempts against the affected sector fell within a month, and no one could say so.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House Declines to Detail Response to Grid Intrusion" },
+        { "outlet_id": "world-desk", "title": "Attribution Fight Follows the Grid Intrusion" }
+      ]
+    }
+  ],
+  "followup_events": [
+    { "event_id": "cyber-attribution-fallout", "delay_turns": 4, "chance": 0.6, "conditions": [ { "flag": "public_attribution" } ] }
+  ]
+}

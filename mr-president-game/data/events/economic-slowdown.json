@@ -1,0 +1,307 @@
+{
+  "id": "economic-slowdown",
+  "title": "Growth Stalls Ahead of Forecast",
+  "flash_label": "ECONOMIC BRIEF",
+  "category": "economy",
+  "severity": 2,
+  "summary": "Payrolls, orders, and freight volumes all turned down together; the slowdown is broader than the transition briefings assumed.",
+  "briefing_text": "Three of the four leading indicators the Council tracks moved down last month, and the fourth is flat. Manufacturing orders have fallen for a second consecutive month and rail freight loadings are at their weakest level in three years. Treasury judges this a genuine deceleration rather than statistical noise, but the Council is split on whether it becomes a contraction. You have perhaps one quarter before the answer is decided for you.",
+  "location": { "region": "domestic" },
+  "start_conditions": [],
+  "weight": 12,
+  "weight_modifiers": [
+    { "conditions": [ { "path": "hidden.recession_pressure", "op": ">=", "value": 45 } ], "multiply": 2.0 }
+  ],
+  "cooldown": 10,
+  "max_occurrences": 2,
+  "exclusive_with": [],
+  "expiry": null,
+  "tags": ["economy", "growth", "recession", "fiscal"],
+  "cabinet_assessment": {
+    "state": "Our trading partners are slowing with us, Mr. President, which limits how much export demand can rescue the quarter. If we act, a coordinated announcement with allied finance ministries would be worth more than acting alone a week earlier.",
+    "defense": "I have no view on the monetary question, sir, but I will tell you that a stimulus of any size will be paid for out of the outyear defense topline. That is where these bills always land.",
+    "treasury": "This is a demand-side slowdown, not a supply shock, and it is shallow so far. Anything we do should be temporary, targeted, and reversible; permanent commitments made in a soft quarter are how deficits become structural.",
+    "nsa": "Economic weakness narrows every option I bring you on the foreign side. Adversaries read a distracted Washington accurately and price it into their own risk-taking.",
+    "chief_of_staff": "You have four months before this becomes the only thing anyone asks you about. Acting now is a choice; being seen to act in June is not a choice, it is damage control.",
+    "intelligence": "Our reporting on external demand is moderate confidence at best, sir. What I can say is that two of our major partners are revising their own forecasts downward and have not announced it yet."
+  },
+  "choices": [
+    {
+      "id": "stimulus-package",
+      "label": "Emergency Stimulus Package",
+      "description": "Send Congress a broad spending and transfer package designed to reach households within a quarter.",
+      "advisor_positions": {
+        "treasury": "It will work, Mr. President, and it will cost more than the number on the cover. Size it for the slowdown we have, not the one we fear.",
+        "chief_of_staff": "This is the option people will feel. It is also the option that hands the opposition a deficit number to run on for two years.",
+        "defense": "Understand that this crowds out the procurement request I am bringing you in the spring, sir."
+      },
+      "effects": {
+        "public.approval": 2,
+        "public.gdp_growth": 0.4,
+        "public.deficit": 45,
+        "public.national_debt": 45,
+        "public.congress_support": -4
+      },
+      "hidden_effects": {
+        "hidden.recession_pressure": -8,
+        "hidden.political_capital": -8,
+        "hidden.institutional_trust": -1,
+        "hidden.media_goodwill": 2
+      },
+      "flags": { "fiscal_stimulus": true },
+      "counters": { "stimulus_packages": 1 },
+      "delayed": [
+        {
+          "label": "Stimulus reaches households",
+          "delay_turns": 3,
+          "mode": "due",
+          "chance": 1.0,
+          "conditions": [],
+          "effects": { "public.gdp_growth": 0.2, "public.inflation": 0.4, "public.unemployment": -0.2 },
+          "hidden_effects": { "hidden.recession_pressure": -4 },
+          "trigger_event": null,
+          "memory": {
+            "type": "economy",
+            "action": "stimulus transfers reached households",
+            "target": "domestic",
+            "result": "growth firmed, prices ran warmer",
+            "tags": ["stimulus", "growth", "inflation"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Rebate Checks Land as Retail Sales Tick Higher" }
+        },
+        {
+          "label": "Deficit backlash on the Hill",
+          "delay_turns": 5,
+          "window_turns": 6,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "public.deficit", "op": ">=", "value": 150 } ],
+          "effects": { "public.congress_support": -3, "public.approval": -1 },
+          "hidden_effects": { "hidden.political_capital": -4, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Deficit Hawks Regroup Against a White House on Defense" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "signed an emergency stimulus package",
+        "target": "domestic",
+        "result": "growth supported at a lasting fiscal cost",
+        "tags": ["stimulus", "deficit", "economy"]
+      },
+      "outcome_text": "The package cleared both chambers on a narrow, bruising vote. Treasury expects the transfers to reach households inside a quarter; the deficit line moved by more than the White House wanted printed.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "{president} Signs Emergency Economic Package" },
+        { "outlet_id": "capital-observer", "title": "A Big Bill, a Bigger Deficit: The Cost of Moving First" }
+      ]
+    },
+    {
+      "id": "targeted-tax-relief",
+      "label": "Targeted Tax Relief",
+      "description": "A narrow, time-limited relief package aimed at small employers and middle-income households.",
+      "advisor_positions": {
+        "treasury": "This is the option I can defend line by line, Mr. President. It is smaller than the moment may seem to demand, and that is deliberate.",
+        "chief_of_staff": "It passes. That is its virtue. Nobody writes a song about it either."
+      },
+      "effects": {
+        "public.approval": 1,
+        "public.gdp_growth": 0.2,
+        "public.deficit": 20,
+        "public.national_debt": 20,
+        "public.congress_support": 2
+      },
+      "hidden_effects": {
+        "hidden.recession_pressure": -3,
+        "hidden.political_capital": -3,
+        "hidden.media_goodwill": -2
+      },
+      "flags": { "targeted_relief": true },
+      "counters": { "tax_actions": 1 },
+      "delayed": [
+        {
+          "label": "Relief measures show up in hiring",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.7,
+          "conditions": [],
+          "effects": { "public.unemployment": -0.2, "public.approval": 1 },
+          "hidden_effects": { "hidden.recession_pressure": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "economy",
+            "action": "targeted relief supported small-employer hiring",
+            "target": "domestic",
+            "result": "modest labour-market improvement",
+            "tags": ["tax", "employment"]
+          },
+          "headline": { "outlet_id": "american-ledger", "title": "Small Employers Report Steadier Hiring After Relief Measures" }
+        },
+        {
+          "label": "Criticism that the relief was too small",
+          "delay_turns": 3,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.5,
+          "conditions": [ { "path": "hidden.recession_pressure", "op": ">=", "value": 40 } ],
+          "effects": { "public.approval": -2 },
+          "hidden_effects": { "hidden.media_goodwill": -3, "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "capital-observer", "title": "Was It Enough? The Case Against Half a Package" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "enacted targeted, time-limited tax relief",
+        "target": "domestic",
+        "result": "bipartisan passage, limited effect",
+        "tags": ["tax", "economy", "congress"]
+      },
+      "outcome_text": "The relief bill passed comfortably and cost less than half of what the Council had modelled. Whether it is enough depends on a quarter of data nobody has yet.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "Congress Clears Targeted Relief Bill With Bipartisan Margin" },
+        { "outlet_id": "american-ledger", "title": "Markets Read Restraint as a Signal of Fiscal Seriousness" }
+      ]
+    },
+    {
+      "id": "fiscal-restraint",
+      "label": "Hold the Line on Spending",
+      "description": "Decline new fiscal measures, defend the deficit path, and let automatic stabilizers do the work.",
+      "advisor_positions": {
+        "treasury": "It is the disciplined answer, Mr. President, and discipline is only a virtue if the slowdown stays shallow. If it does not, we will be acting later from a weaker position.",
+        "chief_of_staff": "If unemployment prints above five and a half before the summer, this decision will be replayed in every advertisement you see for two years."
+      },
+      "effects": {
+        "public.approval": -3,
+        "public.deficit": -25,
+        "public.national_debt": -10,
+        "public.congress_support": 3,
+        "public.domestic_stability": -2
+      },
+      "hidden_effects": {
+        "hidden.recession_pressure": 6,
+        "hidden.institutional_trust": 2,
+        "hidden.credibility": 3,
+        "hidden.political_capital": 2,
+        "hidden.media_goodwill": -3
+      },
+      "flags": { "fiscal_restraint": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Slowdown deepens without fiscal support",
+          "delay_turns": 3,
+          "window_turns": 8,
+          "mode": "conditional",
+          "chance": 0.6,
+          "conditions": [ { "path": "hidden.recession_pressure", "op": ">=", "value": 42 } ],
+          "effects": { "public.unemployment": 0.3, "public.gdp_growth": -0.3, "public.approval": -3 },
+          "hidden_effects": { "hidden.recession_pressure": 4, "hidden.media_goodwill": -3 },
+          "trigger_event": null,
+          "memory": {
+            "type": "economy",
+            "action": "declined fiscal support as the slowdown deepened",
+            "target": "domestic",
+            "result": "unemployment rose; restraint became a liability",
+            "tags": ["recession", "restraint", "unemployment"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "The Quarter Washington Chose Not to Fight" }
+        },
+        {
+          "label": "Bond markets reward the deficit path",
+          "delay_turns": 4,
+          "mode": "due",
+          "chance": 0.55,
+          "conditions": [],
+          "effects": { "public.national_debt": -15 },
+          "hidden_effects": { "hidden.credibility": 3, "hidden.institutional_trust": 2 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Long Yields Ease as Washington Holds the Deficit Line" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "declined new fiscal measures during the slowdown",
+        "target": "domestic",
+        "result": "deficit path defended, political cost immediate",
+        "tags": ["restraint", "deficit", "economy"]
+      },
+      "outcome_text": "The White House announced no new measures and defended the existing deficit path. Bond desks noticed approvingly. Everyone else noticed too.",
+      "headlines": [
+        { "outlet_id": "american-ledger", "title": "White House Holds the Line as Growth Softens" },
+        { "outlet_id": "capital-observer", "title": "No Package, No Plan: {president} Bets on the Data Turning" }
+      ]
+    },
+    {
+      "id": "monetary-coordination",
+      "label": "Coordinate With the Central Bank",
+      "description": "Signal publicly that fiscal and monetary policy are aligned, and let the rate path carry the response.",
+      "advisor_positions": {
+        "treasury": "I can arrange the meeting, Mr. President. I would ask you to be careful with the language afterward, because independence is easier to spend than to rebuild.",
+        "intelligence": "Foreign services read our institutional friction closely, sir. A joint statement will be studied for signs of pressure whether or not any exists."
+      },
+      "effects": {
+        "public.approval": -1,
+        "public.gdp_growth": 0.1,
+        "public.inflation": 0.2,
+        "public.crisis_level": -2
+      },
+      "hidden_effects": {
+        "hidden.institutional_trust": -5,
+        "hidden.credibility": -2,
+        "hidden.recession_pressure": -4,
+        "hidden.media_goodwill": 1
+      },
+      "flags": { "monetary_coordination": true },
+      "counters": {},
+      "delayed": [
+        {
+          "label": "Questions over central bank independence",
+          "delay_turns": 2,
+          "mode": "due",
+          "chance": 0.8,
+          "conditions": [],
+          "effects": { "public.approval": -1 },
+          "hidden_effects": { "hidden.institutional_trust": -3, "hidden.credibility": -2 },
+          "trigger_event": null,
+          "memory": {
+            "type": "domestic",
+            "action": "public coordination with the central bank drew scrutiny",
+            "target": "domestic",
+            "result": "independence questions followed the announcement",
+            "tags": ["monetary", "institutions"]
+          },
+          "headline": { "outlet_id": "capital-observer", "title": "Where Does Coordination End and Pressure Begin?" }
+        },
+        {
+          "label": "Easier financial conditions feed through",
+          "delay_turns": 4,
+          "window_turns": 5,
+          "mode": "conditional",
+          "chance": 0.6,
+          "conditions": [ { "path": "public.inflation", "op": "<=", "value": 3.4 } ],
+          "effects": { "public.gdp_growth": 0.3, "public.unemployment": -0.1 },
+          "hidden_effects": { "hidden.recession_pressure": -5 },
+          "trigger_event": null,
+          "memory": null,
+          "headline": { "outlet_id": "american-ledger", "title": "Financial Conditions Ease as Rate Path Shifts" }
+        }
+      ],
+      "memory": {
+        "type": "economy",
+        "action": "announced fiscal and monetary alignment",
+        "target": "domestic",
+        "result": "conditions eased; institutional questions followed",
+        "tags": ["monetary", "coordination", "institutions"]
+      },
+      "outcome_text": "The joint statement was three paragraphs long and carefully worded. Financial conditions eased within the week; the questions about who had asked whom for what did not.",
+      "headlines": [
+        { "outlet_id": "national-wire", "title": "White House and Central Bank Issue Joint Economic Statement" },
+        { "outlet_id": "world-desk", "title": "Foreign Capitals Read a Washington Policy Realignment" }
+      ]
+    }
+  ],
+  "followup_events": []
+}

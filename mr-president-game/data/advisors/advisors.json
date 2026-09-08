@@ -1,0 +1,156 @@
+{
+  "sets": {
+    "default": [
+      {
+        "id": "state",
+        "name": "Margaret Ellery Vance",
+        "office": "Secretary of State",
+        "specialty": "diplomacy",
+        "risk_tolerance": 0.3,
+        "policy_tendencies": ["multilateral", "engagement", "coalition_building"],
+        "confidence_style": "measured",
+        "portrait": null,
+        "fallback_positions": {
+          "economy": "Economic decisions of this size are read abroad as statements of intent, Mr. President. Whatever we choose, let me brief allied capitals before the announcement rather than after.",
+          "domestic": "This is a domestic matter, but our partners will draw conclusions from how steadily we handle it. I would keep the public language calm and the timeline explicit.",
+          "security": "Before we move, I want allied governments consulted rather than notified. A response they helped shape is a response they will help carry.",
+          "diplomacy": "There is a negotiated path here, and it is narrower than it looks. I recommend we test it privately before we close it publicly.",
+          "military": "If force is on the table, the diplomatic channel has to stay open behind it. Deterrence without an off-ramp is how miscalculation happens.",
+          "congress": "The Hill will ask what this costs us abroad. I can give the leadership a classified read that makes the foreign consequences concrete.",
+          "disaster": "Offers of foreign assistance will arrive within hours. Accepting a few of them costs us nothing and buys goodwill we will want later.",
+          "technology": "Our partners are writing their own rules on this right now. If we move alone, we will spend the next two years negotiating our way back to a common standard.",
+          "energy": "Supply is a diplomatic instrument as much as a commercial one. I would rather spend a week with producer governments than a year with the consequences.",
+          "public_health": "International coordination is not charity here; the pathogen does not respect our borders and neither should the response.",
+          "cyber": "Attribution is a diplomatic act. Once we say a name out loud, every allied service is committed to the same story.",
+          "intelligence": "I would rather share more with our partners and be argued with than share less and be doubted.",
+          "default": "My recommendation is the option that keeps the most partners standing beside us when the news cycle moves on, Mr. President."
+        }
+      },
+      {
+        "id": "defense",
+        "name": "Curtis R. Hallam",
+        "office": "Secretary of Defense",
+        "specialty": "military readiness and deterrence",
+        "risk_tolerance": 0.65,
+        "policy_tendencies": ["deterrence", "forward_posture", "readiness_first"],
+        "confidence_style": "assertive",
+        "portrait": null,
+        "fallback_positions": {
+          "economy": "Every dollar this costs comes out of readiness two budgets from now. I am not opposing it; I am telling you where the bill lands.",
+          "domestic": "The Department stays out of domestic politics, sir. What I can tell you is that unrest of any scale pulls Guard units away from their training cycle.",
+          "security": "The adversary is measuring our response time, not our vocabulary. I recommend a posture change they can observe within seventy-two hours.",
+          "diplomacy": "Talks are fine as long as our force posture does not soften while they run. Weakness at the table starts with weakness in the theater.",
+          "military": "We can execute this, Mr. President. What I need from you is a clear end state, because open-ended deployments are how we lose the force.",
+          "congress": "If the supplemental fails, I will be cutting flying hours and steaming days by summer. That is the whole of my position.",
+          "disaster": "We have lift, engineering, and medical capacity ready to move on your order. Say the word and the first aircraft is wheels-up in six hours.",
+          "technology": "Whatever we field, the adversary will have studied it within eighteen months. Plan the second generation while we buy the first.",
+          "energy": "Fuel is a war-fighting commodity. A sustained price shock changes what we can afford to keep at sea.",
+          "public_health": "Force health protection comes first, sir. A degraded readiness posture is a strategic vulnerability, not a medical footnote.",
+          "cyber": "Our networks are contested terrain. Defending them is a military mission and I would like it resourced as one.",
+          "intelligence": "I will act on the assessment I am given, but I want the confidence level in writing before I move forces.",
+          "default": "Choose the option you are prepared to sustain, Mr. President. Half-measures cost more than either extreme."
+        }
+      },
+      {
+        "id": "treasury",
+        "name": "Naomi Feldsted",
+        "office": "Secretary of the Treasury",
+        "specialty": "fiscal and financial policy",
+        "risk_tolerance": 0.35,
+        "policy_tendencies": ["fiscal_discipline", "market_stability", "targeted_intervention"],
+        "confidence_style": "analytical",
+        "portrait": null,
+        "fallback_positions": {
+          "economy": "The data supports action, but the composition matters more than the headline number. Targeted and temporary beats large and permanent.",
+          "domestic": "Uncertainty is itself a cost. Announcing a clear framework this week is worth more than announcing a perfect one next quarter.",
+          "security": "Markets price geopolitical risk within the hour. If we act, we should be able to describe the fiscal ceiling in the same statement.",
+          "diplomacy": "Financial instruments are leverage, and leverage decays with use. I would hold something in reserve.",
+          "military": "I can finance this, Mr. President. What I cannot do is finance it indefinitely without a revenue conversation nobody wants to have.",
+          "congress": "The scoring will drive the vote count more than the rhetoric will. Give me forty-eight hours to shape the numbers.",
+          "disaster": "Emergency appropriations move fastest when they are narrow. Broad packages invite riders and lose weeks.",
+          "technology": "Capital will follow whichever standard becomes predictable first. Predictability is the subsidy that costs us nothing.",
+          "energy": "A price shock is a tax on households that we did not vote for. Any relief we offer should be visible and time-limited.",
+          "public_health": "Sustained absenteeism is the channel that hits growth, not the direct medical spending. Plan for the labor effect.",
+          "cyber": "The financial sector's exposure here is systemic. I would like the Federal Reserve read in before we announce anything.",
+          "intelligence": "Sanctions and controls only work if the enforcement is credible. Announcing more than we can enforce is worse than doing nothing.",
+          "default": "I would take the option with the lower tail risk, Mr. President. We can always add; unwinding is what costs us."
+        }
+      },
+      {
+        "id": "nsa",
+        "name": "Adrian Kohl",
+        "office": "National Security Advisor",
+        "specialty": "escalation management",
+        "risk_tolerance": 0.5,
+        "policy_tendencies": ["escalation_management", "alliance_coordination", "option_preservation"],
+        "confidence_style": "direct",
+        "portrait": null,
+        "fallback_positions": {
+          "economy": "Economic weakness at home narrows every option abroad. I flag that as a national security variable, not a talking point.",
+          "domestic": "Domestic instability is watched closely by people who wish us ill. Resolving this quickly is a security interest.",
+          "security": "There are three ladders here and we should be clear which one we are climbing. My concern is the rung after next, not this one.",
+          "diplomacy": "I support engagement provided we do not trade a durable interest for a temporary calm.",
+          "military": "Sir, the question is not whether we can do this. It is what we do when they respond, and I want that decided before you sign.",
+          "congress": "A divided Washington is itself a signal to our adversaries. Whatever we choose, we should choose it with visible support.",
+          "disaster": "The security concern is the seam: displaced populations, degraded infrastructure, and the openings both create.",
+          "technology": "Technological advantage is perishable. Our policy should assume we hold this lead for three years, not thirty.",
+          "energy": "Energy shocks change adversary behaviour faster than sanctions do. Expect opportunism while prices stay high.",
+          "public_health": "A stressed health system is a stressed nation. I would treat continuity of government planning as live, not theoretical.",
+          "cyber": "Assume they are still inside the network while we deliberate. Our response plan has to survive being read by them.",
+          "intelligence": "I would rather act on a sixty percent assessment quickly than a ninety percent assessment too late, but you should know which one you have.",
+          "default": "Mr. President, pick the option that leaves you the most choices next month. That is the whole of my counsel."
+        }
+      },
+      {
+        "id": "chief_of_staff",
+        "name": "Deborah Yance",
+        "office": "White House Chief of Staff",
+        "specialty": "political strategy and execution",
+        "risk_tolerance": 0.4,
+        "policy_tendencies": ["political_capital", "coalition_management", "message_discipline"],
+        "confidence_style": "pragmatic",
+        "portrait": null,
+        "fallback_positions": {
+          "economy": "People vote their kitchen table, sir. Whatever we do has to be explainable in one sentence by Thursday.",
+          "domestic": "This one lands on us whether we act or not. Owning it early is cheaper than being assigned it later.",
+          "security": "The country will back a firm response for about six weeks. After that, they will ask what it cost.",
+          "diplomacy": "Nobody loses an election over a treaty, but they do lose one over looking weak. The optics here matter as much as the substance.",
+          "military": "If we send people, we should be able to say when they come home. That is the question you will be asked at every stop.",
+          "congress": "I have the whip count and it is tighter than the leadership admits. Spending capital here means not spending it in March.",
+          "disaster": "Be visible, be early, and do not promise a dollar figure before Treasury signs off on it.",
+          "technology": "This is a jobs story before it is a technology story. Frame it that way or someone else will frame it for us.",
+          "energy": "Prices at the pump move your approval within two weeks. There is no slower channel in American politics.",
+          "public_health": "Clear guidance beats optimistic guidance. Every reversal costs us more credibility than the original bad news would have.",
+          "cyber": "The public will forgive the breach. They will not forgive finding out we knew and said nothing.",
+          "intelligence": "If this leaks before we announce it, we lose the framing entirely. Decide today or decide who talks.",
+          "default": "You have finite capital this month, Mr. President. My only question is whether this is the fight you want to spend it on."
+        }
+      },
+      {
+        "id": "intelligence",
+        "name": "Miriam Okonjo-Hale",
+        "office": "Director of National Intelligence",
+        "specialty": "assessment and collection",
+        "risk_tolerance": 0.25,
+        "policy_tendencies": ["source_protection", "assessment_discipline", "warning_intelligence"],
+        "confidence_style": "cautious",
+        "portrait": null,
+        "fallback_positions": {
+          "economy": "Our reporting on the external drivers here is moderate confidence at best. I would not build policy on the precision of these figures.",
+          "domestic": "We do not collect domestically, sir. What I can offer is what foreign services are saying about our situation, and they are watching closely.",
+          "security": "Assessment is moderate confidence, and the gap is in intent rather than capability. We know what they can do; we are inferring why.",
+          "diplomacy": "Their negotiating position is partly performance. We have reporting that suggests more flexibility than their public line implies.",
+          "military": "Indications and warning are thin on the follow-on. If we move, we will be operating with less warning time than we would like.",
+          "congress": "I can brief the intelligence committees in closed session today. That is the only channel I can guarantee holds.",
+          "disaster": "Our contribution is imagery and infrastructure assessment. It is available now and unclassified within the hour.",
+          "technology": "The proliferation timeline is shorter than the public estimate. Assume the capability is available to second-tier actors within two years.",
+          "energy": "The disruption reporting is fragmentary. I would not yet characterize this as deliberate, and I would resist anyone who does.",
+          "public_health": "Foreign reporting on case numbers is unreliable by design in several countries. Our picture is incomplete and will stay incomplete.",
+          "cyber": "Attribution takes weeks to reach high confidence. Anything faster than that is a judgement call, and it should be labelled as one.",
+          "intelligence": "Sir, I can give you the assessment or I can give you certainty. I cannot give you both, and I will not pretend otherwise.",
+          "default": "I would characterize our confidence as moderate, Mr. President. I will tell you plainly when it changes in either direction."
+        }
+      }
+    ]
+  }
+}
