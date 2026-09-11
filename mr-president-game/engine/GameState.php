@@ -40,6 +40,8 @@ final class GameState
         'rng'                => null,
         'turn'               => 1,
         'term'               => 1,
+        'campaign'           => CampaignSystem::DEFAULTS,
+        'president_profile'  => [],
         'date'               => '',
         'public'             => [],
         'hidden'             => [],

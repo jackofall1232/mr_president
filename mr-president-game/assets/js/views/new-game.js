@@ -67,6 +67,20 @@
 		} );
 		var submit;
 		var form;
+		var options = ( window.MRP_CONFIG || {} ).profileOptions || {};
+		function select( id, values ) {
+			return el( 'select', { id: id, 'class': 'mrp-input' }, ( values || [] ).map( function ( value ) {
+				return el( 'option', { value: value, text: value } );
+			} ) );
+		}
+		var age = el( 'input', { id: 'mrp-age', type: 'number', min: '35', max: '100', value: '45', 'class': 'mrp-input' } );
+		var home = select( 'mrp-home', options.states );
+		var alignment = select( 'mrp-alignment', options.alignments );
+		alignment.value = 'Centrist';
+		var priorities = ( options.priorities || [] ).map( function ( value ) {
+			var box = el( 'input', { type: 'checkbox', value: value } );
+			return { box: box, node: el( 'label', { 'class': 'mrp-priority' }, [box, ' ' + value] ) };
+		} );
 
 		function showError( message ) {
 			if ( message ) {
@@ -101,7 +115,12 @@
 					return;
 				}
 				showError( '' );
-				MRP.actions.createGame( result.value );
+				var chosen = priorities.filter( function ( item ) { return item.box.checked; } ).map( function ( item ) { return item.box.value; } );
+				if ( chosen.length !== 3 || !Number.isInteger( Number( age.value ) ) || Number( age.value ) < 35 || Number( age.value ) > 100 ) {
+					showError( 'Enter an age from 35 to 100 and choose exactly three priorities.' );
+					return;
+				}
+				MRP.actions.createGame( result.value, { age: Number( age.value ), home_state: home.value, alignment: alignment.value, priorities: chosen } );
 			}
 		}, [
 			el( 'label', { 'class': 'mrp-field__label', 'for': 'mrp-president-name', text: 'Name of the president-elect' } ),
@@ -112,6 +131,14 @@
 				text: NAME_MIN + '–' + NAME_MAX + ' characters. This name appears on every briefing and headline.'
 			} ),
 			errorNode,
+			el( 'label', { 'class': 'mrp-field__label', 'for': 'mrp-age', text: 'Age at inauguration' } ), age,
+			el( 'label', { 'class': 'mrp-field__label', 'for': 'mrp-home', text: 'Home state' } ), home,
+			el( 'label', { 'class': 'mrp-field__label', 'for': 'mrp-alignment', text: 'Political alignment' } ), alignment,
+			el( 'fieldset', { 'class': 'mrp-priorities' }, [
+				el( 'legend', { text: 'Your mandate — choose three priorities' } ),
+				priorities.map( function ( item ) { return item.node; } )
+			] ),
+			el( 'p', { 'class': 'mrp-field__hint', text: 'Identity and priorities describe your president; they do not grant automatic bonuses. Reelection requires approval above 50% in November of year four.' } ),
 			el( 'p', { 'class': 'mrp-oath', text: OATH } ),
 			el( 'div', { 'class': 'mrp-form__actions' }, [
 				el( 'button', {

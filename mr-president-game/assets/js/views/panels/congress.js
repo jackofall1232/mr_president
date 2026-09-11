@@ -63,6 +63,9 @@
 			title: 'Congress',
 			aside: 'Term ' + ui.fmt.num( game.term ) + ' · Month ' + ui.fmt.num( game.turn )
 		}, [
+			game.campaign ? views.campaign.chambers( game.campaign ) : null,
+			el( 'p', { 'class': 'mrp-field__hint', text: 'All 435 House seats and one Senate class face election every two years. Seat shares influence congressional support. These are simplified game rules, not election predictions.' } ),
+			game.campaign ? views.campaign.ledger( game.campaign ) : null,
 			el( 'div', { 'class': 'mrp-block' }, [
 				el( 'h3', { 'class': 'mrp-section-title', text: 'Floor arithmetic' } ),
 				el( 'div', { 'class': 'mrp-grid' }, [

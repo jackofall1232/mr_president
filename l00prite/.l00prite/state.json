@@ -2,10 +2,10 @@
   "schema_version": 2,
   "project_name": "mr-president",
   "current_goal": "Expand the presidency simulator, frontend, optional WordPress AI and sourced events",
-  "current_phase": "WordPress connector/model settings merged into main with user approval; broader expansion pending",
+  "current_phase": "Campaign expansion implemented and locally verified on feature/presidential-campaign; publication pending review",
   "active_agent": null,
   "last_agent": "codex",
-  "last_updated": "2026-09-11T18:00:00Z",
+  "last_updated": "2026-09-11T18:57:12Z",
   "status": "ready",
   "blocked": false,
   "blocker_reason": null,
@@ -16,5 +16,5 @@
   "ci_status": "passing_locally",
   "execution_active": false,
   "execution_stop_reason": null,
-  "next_recommended_action": "Verify on configured WordPress 7.0; continue frontend and presidency systems requested by the user. No release declared."
+  "next_recommended_action": "Review campaign expansion and request per-action publication approval; verify real WordPress flow. Cabinet, legislation, judiciary and sourced events remain outstanding. No release declared."
 }

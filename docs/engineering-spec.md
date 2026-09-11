@@ -644,3 +644,33 @@ Accessibility: buttons are `<button>`, panels are `role="tabpanel"`, event choic
   event eligibility/cooldown/exclusivity/max_occurrences; delayed queue due/conditional/chance/trigger;
   full game: new → decision → advance × 6 with seed S, then serialize at each step, reload,
   continue → identical `toArray()`; content load validates all six events + scenario + advisors.
+
+## 11. Campaign expansion (0.2.0)
+
+Save schema 2 adds `president_profile` and `campaign`. Optional creation profiles contain
+age (35–100), a US state abbreviation, a supported alignment, and exactly three distinct
+policy priorities. These describe the president without granting stat bonuses. The server
+validates the profile and discards extra fields; the old name-only creation call still works.
+
+`CampaignSystem` runs after calendar/term bookkeeping, before drift. It consumes no RNG.
+For the January 2001 scenario, congressional elections occur on turns 23, 47, 71 and 95.
+All 435 House seats and one rotating Senate class (33/33/34 seats) are contested. Approval
+below 50 causes losses; approval at or above 50 produces nonnegative swings. Seat counts
+are bounded, and chamber shares influence the congressional-support target. These are
+transparent game rules, not a forecast of real elections.
+
+The first presidential election is turn 47: raw approval strictly greater than 50 wins;
+50 or below loses. A defeated administration continues until January 2005 (turn 49).
+A reelected administration ends January 2009 (turn 97). Endings clear the event, skip
+drift/event selection, and persist a public-only legacy summary. Further decisions and
+advances return `campaign_finished` (HTTP 409). Congress results are recorded once per
+election turn. Schema-1 saves retain their RNG and progress; saves already beyond the
+first election are grandfathered into reelection rather than retroactively defeated.
+
+The public view model includes campaign/profile blocks. `views/campaign.js` supplies the
+milestone banner, separate chamber cards, election ledger and archive ending. The legacy
+report is deterministic template text; optional AI is not required for either ending.
+`tests/engine/CampaignTest.php` exercises both full campaign paths with reload after every
+step, fractional reelection boundaries, migration, profiles, seat limits and terminal guards.
+`tests/browser-preview.php` provides a mocked transport for checking the real UI scripts;
+it is a development fixture, not an installation file or live WordPress integration test.

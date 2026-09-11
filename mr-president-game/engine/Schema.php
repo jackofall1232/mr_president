@@ -26,7 +26,7 @@ namespace MrPresident\Engine;
 final class Schema
 {
     /** Current game-state schema version. */
-    const VERSION = 1;
+    const VERSION = 2;
 
     /** Key holding the version inside a state document. */
     const VERSION_KEY = 'schema_version';
@@ -104,6 +104,17 @@ final class Schema
      */
     private static function steps(): array
     {
-        return [];
+        return [2 => [self::class, 'migrateTo2']];
+    }
+
+    private static function migrateTo2(array $data): array
+    {
+        $data['campaign'] = CampaignSystem::DEFAULTS;
+        // Existing saves past election night retain their earned playing time.
+        if ((int) ($data['turn'] ?? 1) > 47) {
+            $data['campaign']['reelected'] = true;
+        }
+        $data['president_profile'] = [];
+        return $data;
     }
 }

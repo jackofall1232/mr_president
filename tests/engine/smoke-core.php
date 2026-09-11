@@ -207,7 +207,7 @@ final class SmokeCore
     {
         $state = self::state();
 
-        self::same(1, Schema::VERSION, 'Schema: version 1 is current');
+        self::same(2, Schema::VERSION, 'Schema: campaign version 2 is current');
         self::same(1, $state->turn(), 'GameState: turn reader');
         self::same(1, $state->term(), 'GameState: term reader');
         self::same('2001-01-20', $state->date(), 'GameState: date reader');

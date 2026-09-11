@@ -1,5 +1,12 @@
 # Run Ledger
 
+### Run 2026-09-11T18:57:12Z — Codex campaign expansion
+- Authorization: user asked to continue building the proposed campaign arc. Local implementation only; no new merge, push or deployment authorized.
+- Implemented: validated president profiles, separate House/Senate seats, deterministic election swings, strict >50 reelection, 48/96-month terminal campaigns, public legacy reports, schema-2 migration, responsive campaign UI. Ported fullscreen theme-filter fix into development source. Runtime version 0.2.0; not a published release.
+- Verification: `php tests/run.php` exit 0, 68 passed/0 failed at 2026-09-11T18:57Z, including full campaigns and reload parity. `git diff --check` exit 0 at 18:59Z. Browser preview confirmed profile submission, both endings, restart, separate chambers/election ledger, and 390px mobile layouts with scrollWidth 390; no live WordPress backend exercised.
+- Fixes: updated stale schema assertion; added missing JSON headers to mocked browser transport; suppressed next-term bookkeeping note on terminal transfers.
+- Next: human review and per-action publication permission, runtime-only packaging, live WordPress verification. Cabinet nominations, legislation, judiciary and sourced events remain future units. Protocol lock acquired for this handoff and released before stopping.
+
 ### Run 2026-09-11T18:00:00Z — Codex merge/handoff
 - Goal/authorization: user explicitly requested merge with main and l00prite update.
 - Completed: fetched origin, confirmed main matched origin/main, committed connector implementation as 13d403c on feature/wordpress-connectors, merged into local main, updated durable handoff and removed stale skeleton review todo (already merged via PR #1).
