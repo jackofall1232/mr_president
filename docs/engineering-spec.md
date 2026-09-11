@@ -605,7 +605,15 @@ interface AI_Provider_Interface {
 
 `Template_AI_Provider` implements all methods with deterministic string templates and no
 network. `Plugin::ai()` returns the provider chosen by the `mrp_ai_provider` filter
-(default template). The briefing `summary` string is produced here from the structured
+(default WordPress Connectors when available, otherwise template). Admin settings
+`mrp_ai_mode` (`wordpress` or `offline`) and `mrp_ai_model` (Luna default, Terra,
+Sol, Astra) choose the integration and model separately. The WordPress adapter uses
+`wp_ai_client_prompt()->using_model_preference(['openai', model])`; credentials are
+managed exclusively in WordPress Settings → Connectors. Only the daily brief currently
+uses live generation; other interface methods retain templates. Public template facts
+are the only prompt payload. Successes are cached per user/model/facts for 24 hours;
+failures use a 60-second fallback cache. AI cannot supply authoritative effects or news.
+The briefing `summary` string is produced here from the structured
 briefing the engine returns. Nothing in this layer receives a `GameState` object — only
 arrays produced by `View_Model`.
 

@@ -11,6 +11,7 @@ use MrPresident\Engine\ContentRepository;
 use MrPresident\Engine\GameEngine;
 use MrPresident\Plugin\AI\AI_Provider_Interface;
 use MrPresident\Plugin\AI\Template_AI_Provider;
+use MrPresident\Plugin\AI\WordPress_AI_Provider;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -203,7 +204,8 @@ final class Plugin {
 	 */
 	public function ai() {
 		if ( null === $this->ai ) {
-			$default  = new Template_AI_Provider();
+			$default  = 'wordpress' === get_option( AI_Settings::MODE_OPTION, 'wordpress' ) && AI_Settings::available()
+				? new WordPress_AI_Provider() : new Template_AI_Provider();
 			$filtered = apply_filters( self::AI_PROVIDER_FILTER, $default );
 
 			$this->ai = ( $filtered instanceof AI_Provider_Interface ) ? $filtered : $default;

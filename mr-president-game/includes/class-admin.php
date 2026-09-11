@@ -95,6 +95,7 @@ final class Admin {
 	 * @return void
 	 */
 	public function register_settings() {
+		AI_Settings::register();
 		register_setting(
 			self::OPTION_GROUP,
 			MRP_OPTION_DEV_MODE,

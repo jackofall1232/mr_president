@@ -413,3 +413,17 @@ Intentionally deferred from 0.1.0:
 - Historical scenario packs (2000 onward) with sourced research, alongside the fictional
   and procedural crises.
 - Android / WebView shell reusing the engine and REST contract.
+# Optional WordPress AI
+
+In **Settings → Mr. President**, choose the AI integration (WordPress Connectors,
+the default, or Offline) and model (Luna, the default, Terra, Sol, or Astra).
+On WordPress 7.0+, install/configure the OpenAI provider in **Settings → Connectors**.
+Credentials remain managed by WordPress; this plugin has no API-key field.
+Model availability depends on the provider plugin and connected account.
+
+AI currently enriches the daily brief using public simulation facts. This sends those
+facts to OpenAI and may incur API charges. Other advisor/media methods still use local
+templates. Cached briefs reduce repeat requests. Missing APIs, credentials, unavailable
+models and failed requests fall back to offline prose. Offline mode never requests AI.
+The simulation remains authoritative; live news and AI-proposed actions are separate,
+not-yet-implemented features.
