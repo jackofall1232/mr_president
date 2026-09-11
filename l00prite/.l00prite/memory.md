@@ -3,6 +3,7 @@
 Durable project facts and decisions that future agents should preserve.
 
 ## Decisions
+- 2026-09-11 user explicitly approved merging the campaign expansion to main and updating/pushing plugin. Plugin package commit 12738d0 includes runtime version 0.2.0 and updated readme; no protocol files, tests or development docs are included.
 - 2026-09-11 campaign expansion: schema 2, separate 435-seat House and rotating Senate classes; November approval-based elections; strictly >50 wins reelection, <=50 loses. Transfer dates end play after 48 or 96 months. Profiles are descriptive, not bonuses. Legacy report is deterministic and public-only. Old post-election saves are grandfathered into reelection; RNG remains unchanged. Feature branch only pending publication.
 - 2026-09-11 user chose WordPress 7.0 Connectors for site-managed OpenAI credentials. Separate mrp_ai_mode and mrp_ai_model options default to wordpress and gpt-5.6-luna; offline and Terra/Sol/Astra are selectable. This explicitly extends the original template-only 0.1.0 scope. No credentials were created, copied or changed. Daily brief is the first live AI consumer; other prose and all effects remain deterministic.
 - `docs/engineering-spec.md` is the module contract; code and spec are changed together.

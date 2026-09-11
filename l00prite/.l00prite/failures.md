@@ -20,6 +20,7 @@ Record failed approaches and why they should not be retried unless conditions ch
 | Stale Arming (crashed run left `enabled: true`) | S2 | Pre-flight stale-run recovery; persisted flags never authorize a run. |
 
 ## Failed Approaches
+- 2026-09-11 packaging: full-file generated patch exceeded tool output limits; compact unified hunks applied successfully. Nested node syntax-check subprocess hit sandbox EPERM; in-process vm.Script parsing succeeded for all shipped JS. PHP lint ran independently and passed.
 - 2026-09-11 campaign: smoke-core assumed schema 1; updated assertion for deliberate schema-2 migration. Browser fixture initially omitted JSON Content-Type headers, causing the API wrapper to use its text fallback; corrected the fixture, not production transport.
 - 2026-09-11 merge: no Git author identity configured; commit succeeded with command-scoped Codex author settings. Do not change global identity to resolve this.
 - 2026-09-11: authenticated gh API source lookup returned HTTP 401 (bad credentials). Public raw GitHub source fetched successfully with curl after network approval. Do not retry authenticated gh until credentials change. Live WordPress/AI verification not performed in this checkout.
