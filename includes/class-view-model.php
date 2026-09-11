@@ -115,6 +115,8 @@ final class View_Model {
 		$game = array(
 			'id'             => (string) $state->get( 'game_uuid', '' ),
 			'president_name' => (string) $state->get( 'president_name', '' ),
+			'campaign'       => $state->get( 'campaign', array() ),
+			'president_profile' => $state->get( 'president_profile', array() ),
 			'scenario'       => $this->scenario_stub( (string) $state->get( 'scenario_id', '' ) ),
 			'date'           => $date,
 			'month_label'    => View_Model_Labels::month_label( $date ),

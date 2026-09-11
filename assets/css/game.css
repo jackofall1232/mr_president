@@ -109,11 +109,30 @@ body.mrp-fullscreen {
 	margin: 0;
 	overflow: hidden;
 	background: var(--mrp-void, #070a0f);
-	/* Site-wide filter animations make body the fixed app's containing block.
-	 * With no in-flow content, its zero height clips the entire game screen. */
 	animation: none !important;
 	filter: none !important;
 }
+
+/* Campaign calendar and presidential archives. */
+.mrp-campaign-banner { display: flex; justify-content: space-between; gap: 12px; padding: 12px 24px; background: #17212e; border-bottom: 1px solid #c9a227; font-size: 12px; flex-shrink: 0; }
+.mrp-chambers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+.mrp-chamber { padding: 20px; border: 1px solid #718093; border-top: 3px solid #c9a227; }
+.mrp-chamber__count { font: 32px Georgia, serif; }
+.mrp-chamber meter { width: 100%; height: 14px; }
+.mrp-legacy.mrp-screen { align-items: flex-start; }
+.mrp-legacy__paper { width: 100%; max-width: 960px; padding: 40px; background: #efe6d2; color: #23201a; margin: 20px auto; }
+.mrp-legacy__paper h1, .mrp-legacy__paper h2, .mrp-legacy__paper h3 { color: #23201a; }
+.mrp-legacy__paper h1 { font: 42px/1.15 Georgia, serif; margin: 18px 0; }
+.mrp-legacy__paper h2 { font: 25px/1.3 Georgia, serif; margin: 28px 0 14px; }
+.mrp-legacy__paper p { line-height: 1.6; margin: 10px 0; }
+.mrp-legacy__paper .mrp-hero__kicker { color: #80631a; }
+.mrp-legacy__paper .mrp-btn { margin: 12px 10px 0 0; }
+.mrp-legacy__metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; border-block: 1px solid #cdbf9f; }
+.mrp-priorities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 16px; margin: 20px 0; border: 1px solid #718093; }
+.mrp-priority { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.mrp-form .mrp-field__label { margin-top: 14px; }
+.mrp-screen:has(.mrp-priorities) { align-items: flex-start; }
+@media (max-width: 600px) { .mrp-campaign-banner { flex-direction: column; padding: 10px; } .mrp-chambers, .mrp-priorities { grid-template-columns: 1fr; } .mrp-legacy__paper { padding: 20px; } }
 
 /* WordPress admin bar: the fixed root must start below it for logged-in users. */
 body.admin-bar .mrp-app {

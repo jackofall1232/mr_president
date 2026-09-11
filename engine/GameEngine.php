@@ -110,7 +110,7 @@ final class GameEngine
      *
      * @throws EngineException `unknown_scenario`, `unknown_event` or `invalid_content`.
      */
-    public function newGame(string $scenarioId, string $presidentName, int $seed): GameState
+    public function newGame(string $scenarioId, string $presidentName, int $seed, array $profile = []): GameState
     {
         $scenario = $this->content->scenario($scenarioId);
         $initial  = $scenario['initial_state'];
@@ -118,6 +118,7 @@ final class GameEngine
         $data = GameState::defaults();
 
         $data['president_name'] = $presidentName;
+        $data['president_profile'] = PresidentProfile::validate($profile);
         $data['scenario_id']    = (string) $scenario['id'];
         $data['seed']           = $seed;
         $data['rng']            = ['state' => $seed];
@@ -169,6 +170,7 @@ final class GameEngine
      */
     public function applyDecision(GameState $state, string $choiceId): array
     {
+        CampaignSystem::requireActive($state);
         return $this->decisions->apply($state, $choiceId);
     }
 

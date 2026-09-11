@@ -135,6 +135,7 @@ final class TurnEngine
      */
     public function advance(GameState $state): array
     {
+        CampaignSystem::requireActive($state);
         self::requireResolvedEvent($state);
 
         $state->set(self::SNAPSHOT_PATH, self::indicators($state));
@@ -144,6 +145,11 @@ final class TurnEngine
         $state->set('date', self::addMonth($state->date()));
 
         $notes = [$this->elections->tick($state)];
+        array_unshift($notes, CampaignSystem::tick($state));
+        if ('active' !== $state->get('campaign.status')) {
+            // The outgoing administration does not begin the next numbered term.
+            return $this->buildReport($state, [$notes[0]], [], null);
+        }
 
         foreach ($this->drift as $system) {
             $notes[] = $system->tick($state);

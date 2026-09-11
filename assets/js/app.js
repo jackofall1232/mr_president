@@ -127,12 +127,12 @@
 		 *
 		 * @param {string} name President name, already validated client-side.
 		 */
-		createGame: function ( name ) {
+		createGame: function ( name, profile ) {
 			if ( state().busy ) {
 				return;
 			}
 			store().set( { busy: true } );
-			MRP.api.newGame( name ).then( function ( game ) {
+			MRP.api.newGame( name, null, profile ).then( function ( game ) {
 				adoptGame( game );
 				store().set( { view: 'situation', panel: 'brief' } );
 				MRP.ui.toast( 'You have taken the oath. The first briefing is on your desk.', 'success' );

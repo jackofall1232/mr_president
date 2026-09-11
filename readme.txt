@@ -2,7 +2,7 @@
 Contributors: jackofall1232
 Requires at least: 6.0
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,10 +47,19 @@ This branch contains the installable plugin only. Source documentation, tests an
 development tooling are maintained on the main branch:
 https://github.com/jackofall1232/mr_president/tree/main
 
-Version 0.1.1 is a playable foundation. Expanded elections, legislative negotiations,
-historical/current-event feeds and the planned frontend redesign are not included yet.
+Version 0.2.0 includes president creation, separate House/Senate elections, midterms,
+approval-based reelection and one-term/eight-year legacy endings. Approval must be
+strictly above 50% at the first presidential election to win a second term.
+Legislative negotiations, cabinet appointments, judiciary gameplay and sourced
+historical/current-event feeds are not included yet.
 
 == Changelog ==
+
+= 0.2.0 =
+Add president profiles, congressional elections, reelection and campaign endings.
+Add responsive campaign milestones, chamber cards, election history and legacy reports.
+Migrate existing saves to campaign schema 2 without resetting their random state.
+Preserve the fullscreen black-screen fix. AI remains optional.
 
 = 0.1.1 =
 Fix a black screen caused by site-wide body filter animations collapsing the

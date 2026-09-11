@@ -122,8 +122,9 @@
 		 * @param {string} [scenarioId] Scenario id; the server defaults it.
 		 * @return {Promise<Object>} The new game view model.
 		 */
-		newGame: function ( name, scenarioId ) {
+		newGame: function ( name, scenarioId, profile ) {
 			var body = { president_name: name };
+			if ( profile ) { body.profile = profile; }
 
 			if ( scenarioId ) {
 				body.scenario_id = scenarioId;

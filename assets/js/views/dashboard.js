@@ -453,8 +453,12 @@
 	 */
 	function render( state ) {
 		var fragment = window.document.createDocumentFragment();
+		if ( state.game.campaign && state.game.campaign.status !== 'active' ) {
+			return views.campaign.ending( state );
+		}
 
 		fragment.appendChild( topBar( state ) );
+		if ( state.game.campaign ) { fragment.appendChild( views.campaign.banner( state.game ) ); }
 		fragment.appendChild( MRP.ui.el( 'div', { 'class': 'mrp-main' }, [
 			rail( state ),
 			centre( state ),

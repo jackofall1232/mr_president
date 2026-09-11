@@ -53,6 +53,7 @@ final class Assets {
 	 * dependency list.
 	 */
 	const VIEW_SCRIPTS = array(
+		'mrp-view-campaign'   => 'assets/js/views/campaign.js',
 		'mrp-view-title'      => 'assets/js/views/title.js',
 		'mrp-view-new-game'   => 'assets/js/views/new-game.js',
 		'mrp-view-event-card' => 'assets/js/views/event-card.js',
@@ -177,6 +178,11 @@ final class Assets {
 			'loginUrl'   => wp_login_url( $redirect ? $redirect : home_url( '/' ) ),
 			'version'    => MRP_VERSION,
 			'assetsUrl'  => MRP_PLUGIN_URL . 'assets/',
+			'profileOptions' => array(
+				'states' => \MrPresident\Engine\PresidentProfile::STATES,
+				'alignments' => \MrPresident\Engine\PresidentProfile::ALIGNMENTS,
+				'priorities' => \MrPresident\Engine\PresidentProfile::PRIORITIES,
+			),
 		);
 	}
 
@@ -208,7 +214,7 @@ final class Assets {
 
 		$dashboard_deps = array_merge(
 			$base,
-			array( 'mrp-view-side-panel', 'mrp-view-event-card', 'mrp-view-outcome' ),
+			array( 'mrp-view-side-panel', 'mrp-view-event-card', 'mrp-view-outcome', 'mrp-view-campaign' ),
 			array_keys( self::PANEL_SCRIPTS )
 		);
 
