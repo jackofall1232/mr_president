@@ -48,6 +48,8 @@ final class Game_Controller {
 	 */
 	const ERROR_STATUS = array(
 		'decision_required'      => 409,
+		'campaign_finished'      => 409,
+		'invalid_profile'        => 400,
 		'event_already_resolved' => 409,
 		'no_active_event'        => 409,
 		'unknown_choice'         => 400,
@@ -139,12 +141,15 @@ final class Game_Controller {
 	 * @return array|WP_Error
 	 */
 	public function create_game( $user_id, $name, $scenario_id = null, array $client = array() ) {
-		$this->note_ignored_fields( $client, array( 'president_name', 'scenario_id' ) );
+		$this->note_ignored_fields( $client, array( 'president_name', 'scenario_id', 'profile' ) );
+		if ( isset( $client['profile'] ) && ! is_array( $client['profile'] ) ) {
+			return new WP_Error( 'invalid_profile', 'Profile must be an object.', array( 'status' => 400 ) );
+		}
 
 		$scenario = ( is_string( $scenario_id ) && '' !== $scenario_id ) ? $scenario_id : self::DEFAULT_SCENARIO;
 
 		try {
-			$state = $this->engine->newGame( $scenario, (string) $name, $this->new_seed() );
+			$state = $this->engine->newGame( $scenario, (string) $name, $this->new_seed(), isset( $client['profile'] ) ? $client['profile'] : array() );
 		} catch ( EngineException $exception ) {
 			return $this->engine_error( $exception );
 		}

@@ -3,7 +3,7 @@
  * Plugin Name:       Mr. President
  * Plugin URI:        https://github.com/jackofall1232/mr_president
  * Description:       A fictional presidential decision simulator: run a month-by-month administration through event cards, cabinet advice, and consequences that surface turns later. Ships as a self-contained plugin with a deterministic simulation engine.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Mr. President Contributors
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * ---------------------------------------------------------------------------
  */
 
-define( 'MRP_VERSION', '0.1.0' );
+define( 'MRP_VERSION', '0.2.0' );
 define( 'MRP_PLUGIN_FILE', __FILE__ );
 define( 'MRP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MRP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

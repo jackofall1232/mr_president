@@ -78,6 +78,10 @@ final class CongressSystem extends DriftSystem
             + ($capital * self::SUPPORT_CAPITAL_WEIGHT)
             + ($trust * self::SUPPORT_TRUST_WEIGHT);
 
+        $houseShare = (float) $state->get('campaign.house', 238) / 435;
+        $senateShare = array_sum($state->get('campaign.senate_classes', [18, 18, 17])) / 100;
+        $supportTarget += (($houseShare + $senateShare) / 2 - 0.5) * 20;
+
         if (self::isElectionYear($state)) {
             $supportTarget -= self::ELECTION_YEAR_PENALTY;
         }

@@ -1,5 +1,20 @@
 # Run Ledger
 
+### Run 2026-09-11T19:01:50Z — Approved main/plugin publication
+- Authorization: user explicitly approved merge to main and update of plugin after being asked to publish both. No site deployment or credential changes authorized or performed.
+- Prepared: campaign a83e7d1, runtime-only plugin 12738d0 (0.2.0), updated readme and protocol handoff. Main retains development files; plugin retains only runtime/readme and prior black-screen fix.
+- Verification: fetched main/plugin through SSH, both local refs matched remotes before changes (0/0); `php tests/run.php` exit 0 (68 passed); runtime parity check exit 0 (79 files identical to source); all packaged PHP lint and JS parsing passed; `git diff --check` exit 0. ZIP integrity/layout checked before publication. Checks performed 2026-09-11T19:02–19:04Z.
+- Failures: large generated patch exceeded tool output limit; compact patch succeeded. Nested node spawn was denied; in-process JS parsing succeeded. Known broken gh credentials were not retried.
+- Next: merge approved feature into main, atomic non-force push main/plugin, verify remote hashes; user installs ZIP to test live WordPress. No full-game roadmap completion claimed.
+- Lock: codex-publish-campaign-20260911 acquired/released.
+
+### Run 2026-09-11T18:57:12Z — Codex campaign expansion
+- Authorization: user asked to continue building the proposed campaign arc. Local implementation only; no new merge, push or deployment authorized.
+- Implemented: validated president profiles, separate House/Senate seats, deterministic election swings, strict >50 reelection, 48/96-month terminal campaigns, public legacy reports, schema-2 migration, responsive campaign UI. Ported fullscreen theme-filter fix into development source. Runtime version 0.2.0; not a published release.
+- Verification: `php tests/run.php` exit 0, 68 passed/0 failed at 2026-09-11T18:57Z, including full campaigns and reload parity. `git diff --check` exit 0 at 18:59Z. Browser preview confirmed profile submission, both endings, restart, separate chambers/election ledger, and 390px mobile layouts with scrollWidth 390; no live WordPress backend exercised.
+- Fixes: updated stale schema assertion; added missing JSON headers to mocked browser transport; suppressed next-term bookkeeping note on terminal transfers.
+- Next: human review and per-action publication permission, runtime-only packaging, live WordPress verification. Cabinet nominations, legislation, judiciary and sourced events remain future units. Protocol lock acquired for this handoff and released before stopping.
+
 ### Run 2026-09-11T18:00:00Z — Codex merge/handoff
 - Goal/authorization: user explicitly requested merge with main and l00prite update.
 - Completed: fetched origin, confirmed main matched origin/main, committed connector implementation as 13d403c on feature/wordpress-connectors, merged into local main, updated durable handoff and removed stale skeleton review todo (already merged via PR #1).
