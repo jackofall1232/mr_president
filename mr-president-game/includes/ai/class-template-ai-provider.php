@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * the same prose — which keeps the game reproducible and makes the seam safe to swap for a
  * real model later without changing a single caller.
  */
-final class Template_AI_Provider implements AI_Provider_Interface {
+class Template_AI_Provider implements AI_Provider_Interface {
 
 	/**
 	 * Provider id reported to callers and to the admin panel.
