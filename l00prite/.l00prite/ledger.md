@@ -1,5 +1,24 @@
 # Run Ledger
 
+### Run 2026-09-11T18:00:00Z — Codex merge/handoff
+- Goal/authorization: user explicitly requested merge with main and l00prite update.
+- Completed: fetched origin, confirmed main matched origin/main, committed connector implementation as 13d403c on feature/wordpress-connectors, merged into local main, updated durable handoff and removed stale skeleton review todo (already merged via PR #1).
+- Verification: php tests/run.php — exit 0, 63 passed, 0 failed; git diff --check — exit 0; git rev-list --left-right --count main...origin/main before merge — 0/0. Checks performed 2026-09-11T17:58:35Z.
+- Failure/recovery: initial commit lacked Git author identity; retried successfully with command-scoped Codex identity, without changing global Git configuration.
+- Next: push main with this handoff; live WordPress 7.0 verification, frontend overhaul, governance systems and sourced events remain outstanding. No deployment or full-game completion claimed.
+- Lock: codex-merge-20260911 acquired/released.
+
+### Run 2026-09-11T17:58:00Z — Codex
+- Goal: user-directed WordPress Connectors integration and separate model selection, Luna default.
+- Decision: supervised implementation unit; user chose site-managed connector credentials in response to setup question. No new keys required. Original 0.1.0 template-only scope extended by explicit user request.
+- Completed: admin integration/model selectors; WordPress AI Client daily-brief adapter; public facts only; cached success/failure fallback; offline compatibility; contract docs and mock tests. Feature branch feature/wordpress-connectors.
+- Changed: includes/class-ai-settings.php, class-admin.php, class-plugin.php, AI template and WordPress adapter, tests/wp/AIProviderTest.php, plugin README, engineering spec and protocol memory.
+- Verification: php tests/run.php — exit 0, 63 passed, 0 failed, including all PHP lint, engine purity, deterministic smoke checks and mocked connector errors/caching/model selection (2026-09-11). git diff --check — exit 0 (2026-09-11).
+- Failures/limits: gh authentication returned 401; public raw source read succeeded. No live WordPress installation or provider account tested. No push, deployment or release completion claim.
+- Next: real WordPress verification; frontend redesign, deeper presidency mechanics and sourced events remain requested and unimplemented.
+- Confidence: high for offline behavior and mocked request contract; live provider compatibility unverified.
+- Lock: codex-connectors-20260911 acquired and released for this supervised unit.
+
 Append one entry per agent run. Do not overwrite prior runs.
 
 ## Entry Template

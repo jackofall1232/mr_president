@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "lock_id": null,
+  "lock_id": "codex-merge-20260911",
   "owner_agent": null,
   "owner_session": null,
-  "acquired_at": null,
-  "expires_at": null,
+  "acquired_at": "2026-09-11T17:58:35Z",
+  "expires_at": "2026-09-11T18:28:35Z",
   "ttl_seconds": 1800,
   "purpose": null,
   "protected_paths": [
@@ -18,5 +18,5 @@
     "reviews/",
     "sessions/"
   ],
-  "status": "unlocked"
+  "status": "released"
 }

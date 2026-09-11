@@ -1,12 +1,12 @@
 {
   "schema_version": 2,
   "project_name": "mr-president",
-  "current_goal": "Build the 0.1.0 playable skeleton of the Mr. President WordPress plugin (vertical slice)",
-  "current_phase": "0.1.0 skeleton built \u2014 awaiting maintainer review",
+  "current_goal": "Expand the presidency simulator, frontend, optional WordPress AI and sourced events",
+  "current_phase": "WordPress connector/model settings merged into main with user approval; broader expansion pending",
   "active_agent": null,
-  "last_agent": "claude-fable-5.1",
-  "last_updated": "2026-09-08T15:20:00Z",
-  "status": "in_review",
+  "last_agent": "codex",
+  "last_updated": "2026-09-11T18:00:00Z",
+  "status": "ready",
   "blocked": false,
   "blocker_reason": null,
   "active_event_id": null,
@@ -16,5 +16,5 @@
   "ci_status": "passing_locally",
   "execution_active": false,
   "execution_stop_reason": null,
-  "next_recommended_action": "maintainer reviews the branch; then pick the first 'Later' item in todos.md (guest save store or real AI provider)"
+  "next_recommended_action": "Verify on configured WordPress 7.0; continue frontend and presidency systems requested by the user. No release declared."
 }

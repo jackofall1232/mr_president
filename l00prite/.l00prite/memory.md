@@ -3,6 +3,7 @@
 Durable project facts and decisions that future agents should preserve.
 
 ## Decisions
+- 2026-09-11 user chose WordPress 7.0 Connectors for site-managed OpenAI credentials. Separate mrp_ai_mode and mrp_ai_model options default to wordpress and gpt-5.6-luna; offline and Terra/Sol/Astra are selectable. This explicitly extends the original template-only 0.1.0 scope. No credentials were created, copied or changed. Daily brief is the first live AI consumer; other prose and all effects remain deterministic.
 - `docs/engineering-spec.md` is the module contract; code and spec are changed together.
 - The engine (`mr-president-game/engine/`) is pure PHP 7.4 with no WordPress, globals, clock or unseeded randomness; `tests/run.php` enforces this by grep, so it stays portable to a standalone app or native client.
 - Turn-advance step order (guard → snapshot → date → election → Economy/Domestic/Diplomacy/Congress/Security → delayed queue → event selection → report) is part of the save format because RNG consumption order matters; reordering requires a `Schema::VERSION` bump.
