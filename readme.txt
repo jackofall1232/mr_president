@@ -2,7 +2,7 @@
 Contributors: jackofall1232
 Requires at least: 6.0
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,5 +47,11 @@ This branch contains the installable plugin only. Source documentation, tests an
 development tooling are maintained on the main branch:
 https://github.com/jackofall1232/mr_president/tree/main
 
-Version 0.1.0 is a playable foundation. Expanded elections, legislative negotiations,
+Version 0.1.1 is a playable foundation. Expanded elections, legislative negotiations,
 historical/current-event feeds and the planned frontend redesign are not included yet.
+
+== Changelog ==
+
+= 0.1.1 =
+Fix a black screen caused by site-wide body filter animations collapsing the
+standalone game's fixed-position container. The fix applies only to the game page.

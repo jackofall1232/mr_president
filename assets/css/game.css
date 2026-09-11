@@ -109,6 +109,10 @@ body.mrp-fullscreen {
 	margin: 0;
 	overflow: hidden;
 	background: var(--mrp-void, #070a0f);
+	/* Site-wide filter animations make body the fixed app's containing block.
+	 * With no in-flow content, its zero height clips the entire game screen. */
+	animation: none !important;
+	filter: none !important;
 }
 
 /* WordPress admin bar: the fixed root must start below it for logged-in users. */
